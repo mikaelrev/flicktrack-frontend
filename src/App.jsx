@@ -18,7 +18,6 @@ function App() {
 			.then((data) => setMovies(data));
 	}, []);
 
-	console.log(movies);
 	return (
 		<BrowserRouter>
 			<Navbar />
