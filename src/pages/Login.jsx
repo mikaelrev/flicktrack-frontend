@@ -29,6 +29,7 @@ const Login = () => {
 			const data = await response.json();
 			localStorage.setItem("token", data.token);
 			localStorage.setItem("userId", data.user.id);
+
 			navigate("/movies");
 		} catch (err) {
 			setError(err.message);
