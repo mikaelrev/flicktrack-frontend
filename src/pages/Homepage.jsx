@@ -3,8 +3,8 @@ import MovieCard from "../components/MovieCard";
 
 function Homepage({ movies }) {
 	return (
-		<div className="flex flex-col items-center justify-center py-5">
-			<h1 className="text-5xl font-extrabold dark:text-white my-5">
+		<div className="flex flex-col items-center justify-center">
+			<h1 className="text-5xl font-extrabold dark:text-white mb-5">
 				Track and discover your favorite movies with FlickTrack
 			</h1>
 			<NavLink

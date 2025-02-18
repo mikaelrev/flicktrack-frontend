@@ -35,7 +35,9 @@ function Navbar() {
 								<NavLink to={`/profile/${userId}`}>Profile</NavLink>
 							</li>
 							<li>
-								<button onClick={handleLogout}>Log out</button>
+								<button onClick={handleLogout} className="cursor-pointer">
+									Log out
+								</button>
 							</li>
 						</>
 					) : (

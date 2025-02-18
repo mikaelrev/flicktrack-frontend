@@ -42,7 +42,7 @@ function Profile() {
 				</h1>
 				{user.profileImage === null ? (
 					<img
-						className="mb-3 rounded"
+						className="h-48 w-48 object-cover mb-3 rounded"
 						src="https://static.vecteezy.com/system/resources/thumbnails/005/129/844/small/profile-user-icon-isolated-on-white-background-eps10-free-vector.jpg"
 						alt="avatar"
 					/>
