@@ -36,18 +36,19 @@ function Profile() {
 
 	return (
 		<div className="container mx-auto flex flex-col py-5">
-			<div className="w-full">
+			<div className="w-full flex flex-col">
 				<h1 className="text-3xl font-extrabold text-gray-700 mb-4">
 					{user.username}
 				</h1>
 				{user.profileImage === null ? (
 					<img
+						className="mb-3 rounded"
 						src="https://static.vecteezy.com/system/resources/thumbnails/005/129/844/small/profile-user-icon-isolated-on-white-background-eps10-free-vector.jpg"
 						alt="avatar"
 					/>
 				) : (
 					<img
-						className="h-48 w-48 object-none"
+						className="h-48 w-48 object-cover mb-3 rounded"
 						src={user.profileImage}
 						alt={user.username}
 					/>
