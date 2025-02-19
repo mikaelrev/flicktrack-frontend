@@ -4,24 +4,71 @@ import axios from "axios";
 
 function MovieDetails() {
 	const { movieId } = useParams();
-	const [movie, setMovie] = useState(null);
+	const [movie, setMovie] = useState("");
+	const [isChecked, setIsChecked] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+
+	const token = localStorage.getItem("token");
+	const userId = localStorage.getItem("userId");
+
+	const config = {
+		headers: { Authorization: `Bearer ${token}` },
+	};
 
 	useEffect(() => {
 		const fetchMovie = async () => {
 			try {
-				const response = await axios.get(
+				const movieResponse = await axios.get(
 					`http://localhost:3000/movies/${movieId}`
 				);
-				setMovie(response.data);
+				setMovie(movieResponse.data);
+
+				const userResponse = await axios.get(
+					`http://localhost:3000/users/${userId}/checked`
+				);
+				const userCheckedMovies = userResponse.data.checkedMovies;
+
+				setIsChecked(
+					userCheckedMovies
+						.map((movie) => movie._id)
+						.includes(movieResponse.data._id)
+				);
 			} catch (error) {
-				console.error("Error fetching movie:", error);
+				console.error("Error fetching movie or user data:", error);
 			}
 		};
 
 		fetchMovie();
-	}, [movieId]);
+	}, [movieId, userId]);
 
-	console.log(movie);
+	const addMovieToChecked = async () => {
+		setIsLoading(true);
+		try {
+			await axios.post(
+				`http://localhost:3000/users/movies/${movie._id}/checked`,
+				{},
+				config
+			);
+			setIsChecked(true);
+		} catch (error) {
+			console.error("Error adding movie to checked list:", error);
+		}
+		setIsLoading(false);
+	};
+
+	const removeMovieFromChecked = async () => {
+		setIsLoading(true);
+		try {
+			await axios.delete(
+				`http://localhost:3000/users/movies/${movie._id}/checked`,
+				config
+			);
+			setIsChecked(false);
+		} catch (error) {
+			console.error("Error removing movie from checked list:", error);
+		}
+		setIsLoading(false);
+	};
 
 	if (!movie) return <div>Loading...</div>;
 
@@ -51,6 +98,17 @@ function MovieDetails() {
 						{movie.actors.join(", ")}
 					</p>
 				</div>
+				<button
+					className="p-5 bg-gray-200"
+					onClick={!isChecked ? addMovieToChecked : removeMovieFromChecked}
+					disabled={isLoading}
+				>
+					{isLoading
+						? "Processing..."
+						: isChecked
+						? "Remove from checked"
+						: "Check movie"}
+				</button>
 			</div>
 		</div>
 	);
