@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import AlertNotification from "../components/AlertNotification";
 
 function MovieDetails() {
 	const { movieId } = useParams();
 	const [movie, setMovie] = useState("");
 	const [isChecked, setIsChecked] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [notificationMessage, setNotificationMessage] = useState("");
 
 	const token = localStorage.getItem("token");
 	const userId = localStorage.getItem("userId");
@@ -50,6 +52,7 @@ function MovieDetails() {
 				config
 			);
 			setIsChecked(true);
+			setNotificationMessage("Movie has been checked");
 		} catch (error) {
 			console.error("Error adding movie to checked list:", error);
 		}
@@ -64,6 +67,7 @@ function MovieDetails() {
 				config
 			);
 			setIsChecked(false);
+			setNotificationMessage("Movie has been unchecked");
 		} catch (error) {
 			console.error("Error removing movie from checked list:", error);
 		}
@@ -110,6 +114,13 @@ function MovieDetails() {
 						: "Check movie"}
 				</button>
 			</div>
+
+			{notificationMessage && (
+				<AlertNotification
+					message={notificationMessage}
+					onClose={() => setNotificationMessage("")}
+				/>
+			)}
 		</div>
 	);
 }
