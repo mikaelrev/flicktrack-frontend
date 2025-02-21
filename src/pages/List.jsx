@@ -22,25 +22,28 @@ function List() {
 		fetchList();
 	}, [listId]);
 
-	console.log(list);
-
 	return (
-		<div className="container mt-5 p-5">
+		<div>
 			{!list ? (
 				<p>Loading...</p>
 			) : list.movies.length === 0 ? (
 				<p>The list is empty</p>
 			) : (
-				<>
+				<div>
 					<h1 className="text-5xl font-extrabold dark:text-white mb-5">
 						{list.name}
 					</h1>
-					<ul className="grid grid-cols-6 gap-4">
+					<ul className="flex flex-col gap-3">
 						{list.movies.map((movie) => (
-							<MovieCard movie={movie} key={movie._id} />
+							<div
+								key={movie._id}
+								className="flex items-start justify-start p-5 bg-gray-300 w-full"
+							>
+								<MovieCard movie={movie} size="extra-small" />
+							</div>
 						))}
 					</ul>
-				</>
+				</div>
 			)}
 		</div>
 	);
