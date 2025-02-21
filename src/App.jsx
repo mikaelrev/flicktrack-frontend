@@ -10,6 +10,8 @@ import Signup from "./pages/Signup";
 import MovieDetails from "./pages/MovieDetails";
 import Footer from "./components/Footer";
 import List from "./pages/List";
+import CheckedMovies from "./pages/CheckedMovies";
+import FavoriteMovies from "./pages/FavoriteMovies";
 
 function App() {
 	const [movies, setMovies] = useState([]);
@@ -31,6 +33,14 @@ function App() {
 					<Route path="/lists" element={<Lists />} />
 					<Route path="/lists/:listId" element={<List />} />
 					<Route path="/profile/:userId" element={<Profile />} />
+					<Route
+						path="/profile/:userId/checkedmovies"
+						element={<CheckedMovies />}
+					/>
+					<Route
+						path="/profile/:userId/favoritemovies"
+						element={<FavoriteMovies />}
+					/>
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />
 				</Routes>
