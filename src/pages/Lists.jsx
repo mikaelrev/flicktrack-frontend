@@ -13,7 +13,7 @@ function Lists() {
 	console.log(lists);
 
 	return (
-		<div className="md:container md:mx-auto mt-5">
+		<div>
 			<h1 className="text-5xl font-extrabold dark:text-white mb-5">Lists</h1>
 			<ul className="flex flex-col gap-3">
 				{lists.length === 0

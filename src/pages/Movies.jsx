@@ -30,7 +30,8 @@ function Movies() {
 	};
 
 	return (
-		<div className="md:container md:mx-auto flex flex-col items-center justify-center p-5 mt-5">
+		<div>
+			<h1 className="text-5xl font-extrabold dark:text-white mb-5">Movies</h1>
 			<ul className="grid grid-cols-5 gap-5">
 				{movies.map((movie) => (
 					<MovieCard movie={movie} key={movie.id} />

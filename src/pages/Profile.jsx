@@ -36,7 +36,7 @@ function Profile() {
 	}
 
 	return (
-		<div className="container mx-auto flex flex-col py-5">
+		<div>
 			<div className="w-full flex flex-col">
 				<h1 className="text-3xl font-extrabold text-gray-700 mb-4">
 					{user.username}
