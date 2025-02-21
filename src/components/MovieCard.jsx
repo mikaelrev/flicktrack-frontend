@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 
 function MovieCard({ movie }) {
+	const movieId = movie.id === undefined ? movie._id : movie.id;
+
 	return (
-		<Link to={`/movies/${movie.id}`} className="block max-w-[200px] mx-auto">
-			<li key={movie.id}>
+		<Link to={`/movies/${movieId}`} className="block max-w-[200px] mx-auto">
+			<li key={movieId}>
 				<img
 					className="w-full h-auto rounded-md shadow-lg mb-2"
 					src={`https://image.tmdb.org/t/p/w500${
