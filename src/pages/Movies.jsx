@@ -37,7 +37,7 @@ function Movies() {
 				))}
 			</ul>
 
-			<Pagination totalPages={totalPages} page={page} goToPage={goToPage} />
+			<Pagination {...{ totalPages, page, goToPage }} />
 		</div>
 	);
 }

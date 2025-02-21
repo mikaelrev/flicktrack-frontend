@@ -1,6 +1,4 @@
 function Pagination({ goToPage, page, totalPages }) {
-	if (!totalPages || page <= 0) return null;
-
 	return (
 		<div className="flex justify-center items-center gap-2 mt-6">
 			<button
