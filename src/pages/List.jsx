@@ -6,6 +6,9 @@ import MovieCard from "../components/MovieCard";
 function List() {
 	const { listId } = useParams();
 	const [list, setList] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
+
+	const token = localStorage.getItem("token");
 
 	useEffect(() => {
 		const fetchList = async () => {
@@ -22,12 +25,39 @@ function List() {
 		fetchList();
 	}, [listId]);
 
+	const config = {
+		headers: { Authorization: `Bearer ${token}` },
+	};
+
+	const removeMovieFromList = async (movie) => {
+		setIsLoading(true);
+		try {
+			await axios.delete(
+				`http://localhost:3000/users/lists/${listId}/movies/${movie._id}`,
+				config
+			);
+
+			setList((prevList) => ({
+				...prevList,
+				movies: prevList.movies.filter((m) => m._id !== movie._id),
+			}));
+		} catch (error) {
+			console.error("Error removing movie from list:", error);
+		}
+		setIsLoading(false);
+	};
+
 	return (
 		<div>
 			{!list ? (
 				<p>Loading...</p>
 			) : list.movies.length === 0 ? (
-				<p>The list is empty</p>
+				<div>
+					<h1 className="text-5xl font-extrabold dark:text-white mb-5">
+						Lists
+					</h1>
+					<p>The list is empty</p>
+				</div>
 			) : (
 				<div>
 					<h1 className="text-5xl font-extrabold dark:text-white mb-5">
@@ -40,6 +70,13 @@ function List() {
 								className="flex items-start justify-start p-5 bg-gray-300 w-full"
 							>
 								<MovieCard movie={movie} size="extra-small" />
+								<button
+									className="p-5 bg-gray-200"
+									disabled={isLoading}
+									onClick={() => removeMovieFromList(movie)}
+								>
+									Remove from list
+								</button>
 							</div>
 						))}
 					</ul>
