@@ -1,8 +1,9 @@
-import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import AddCommentForm from "../components/AddCommentForm";
 import AlertNotification from "../components/AlertNotification";
+import CommentItem from "../components/CommentItem";
 
 function MovieDetails() {
 	const { movieId } = useParams();
@@ -18,7 +19,7 @@ function MovieDetails() {
 		headers: { Authorization: `Bearer ${token}` },
 	};
 
-	const fetchMovie = async () => {
+	const fetchMovie = useCallback(async () => {
 		try {
 			const movieResponse = await axios.get(
 				`http://localhost:3000/movies/${movieId}`
@@ -35,15 +36,14 @@ function MovieDetails() {
 					.map((movie) => movie._id)
 					.includes(movieResponse.data._id)
 			);
-			console.log(movieResponse.data);
 		} catch (error) {
 			console.error("Error fetching movie or user data:", error);
 		}
-	};
+	}, [movieId, userId]);
 
 	useEffect(() => {
 		fetchMovie();
-	}, [movieId]);
+	}, [fetchMovie]);
 
 	const addMovieToChecked = async () => {
 		setIsLoading(true);
@@ -134,27 +134,9 @@ function MovieDetails() {
 				{movie.comments.length === 0 ? (
 					<p>{`${movie.title} doesn't have any comments`}</p>
 				) : (
-					movie.comments.map((comment) => (
-						<Link
-							to={`/profile/${comment.user._id}`}
-							key={comment._id}
-							className="flex items-center bg-gray-200 p-5 gap-3 rounded"
-						>
-							<img
-								src={
-									comment.user.profileImage === null
-										? "https://static.vecteezy.com/system/resources/thumbnails/005/129/844/small/profile-user-icon-isolated-on-white-background-eps10-free-vector.jpg"
-										: comment.user.profileImage
-								}
-								className="h-20 w-20 object-cover rounded-full"
-								alt={`${comment.user.username}'s profile picture`}
-							/>
-							<div className="flex flex-col">
-								<p className="text-sm text-gray-500">{comment.user.username}</p>
-								<p>{comment.content}</p>
-							</div>
-						</Link>
-					))
+					movie.comments.map((comment) => {
+						return <CommentItem key={comment._id} comment={comment} />;
+					})
 				)}
 			</div>
 		</div>

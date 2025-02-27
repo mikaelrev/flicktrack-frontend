@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function ListItem({ list }) {
 	return (
-		<li className="flex flex-col p-5">
+		<li className="flex flex-col">
 			<Link to={`/lists/${list._id}`} key={list._id}>
 				<div className="flex justify-between">
 					<div>
