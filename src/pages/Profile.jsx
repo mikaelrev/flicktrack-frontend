@@ -65,7 +65,7 @@ function Profile() {
 			</div>
 			<hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
 			<div className="bg-gray-100 p-3 rounded mb-4">
-				<h2 className="text-3xl font-extrabold text-gray-700 mb-4">
+				<h2 className="text-3xl font-extrabold text-gray-700">
 					Checked movies:
 				</h2>
 				{user.checkedMovies.slice(0, 3).map((movie) => (
@@ -80,7 +80,7 @@ function Profile() {
 				))}
 			</div>
 			<div className="bg-gray-100 p-3 rounded">
-				<h2 className="text-3xl font-extrabold text-gray-700 mb-4">Lists:</h2>
+				<h2 className="text-3xl font-extrabold text-gray-700">Lists:</h2>
 				{user.lists.length === 0
 					? "No lists found"
 					: user.lists.map((list) => <ListItem list={list} key={list._id} />)}
