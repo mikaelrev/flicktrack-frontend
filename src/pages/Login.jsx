@@ -30,7 +30,7 @@ const Login = () => {
 			localStorage.setItem("token", data.token);
 			localStorage.setItem("userId", data.user.id);
 
-			navigate("/movies");
+			navigate("/");
 		} catch (err) {
 			setError(err.message);
 		} finally {
