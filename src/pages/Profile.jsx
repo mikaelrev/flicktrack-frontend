@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ListItem from "../components/ListItem";
+import UserInfo from "../components/UserInfo";
+import axios from "axios";
 
 function Profile() {
 	const { userId } = useParams();
 	const [checkedMovies, setCheckedMovies] = useState([]);
 	const [user, setUser] = useState(null);
 	const [error, setError] = useState(null);
+	const [isFollowing, setIsFollowing] = useState("");
+
+	const activeUser = localStorage.getItem("userId") || "";
+	const token = localStorage.getItem("token");
+
+	const config = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
 
 	const fetchUser = async (userId) => {
 		try {
-			const response = await fetch(`http://localhost:3000/users/${userId}`);
-			if (!response.ok) {
-				throw new Error(`Response status: ${response.status}`);
-			}
+			const response = await axios(`http://localhost:3000/users/${userId}`);
 
-			const { user } = await response.json();
-			console.log(user);
-			setUser(user);
+			setUser(response.data.user);
 		} catch (err) {
 			console.log(err);
 			setError(err.message);
@@ -26,15 +29,39 @@ function Profile() {
 
 	const fetchCheckedMovies = async (userId) => {
 		try {
-			const response = await fetch(
+			const response = await axios(
 				`http://localhost:3000/users/${userId}/checked`
 			);
-			if (!response.ok) {
-				throw new Error(`Failed to fetch checked movies: ${response.status}`);
-			}
 
-			const { checkedMovies } = await response.json();
-			setCheckedMovies(checkedMovies);
+			setCheckedMovies(response.data.checkedMovies);
+		} catch (err) {
+			setError(err.message);
+		}
+	};
+
+	const handleFollowUser = async () => {
+		try {
+			await axios.post(
+				`http://localhost:3000/users/${userId}/follow`,
+				{},
+				config
+			);
+
+			setIsFollowing(true);
+		} catch (err) {
+			setError(err.message);
+		}
+	};
+
+	const handleUnfollowUser = async () => {
+		try {
+			await axios.post(
+				`http://localhost:3000/users/${userId}/unfollow`,
+				{},
+				config
+			);
+
+			setIsFollowing(false);
 		} catch (err) {
 			setError(err.message);
 		}
@@ -55,32 +82,18 @@ function Profile() {
 
 	return (
 		<div>
-			<div className="w-full flex flex-col">
-				<h1 className="text-3xl font-extrabold text-gray-700 mb-4">
-					{user.username}
-				</h1>
-				{user.profileImage === null ? (
-					<img
-						className="h-48 w-48 object-cover mb-3 rounded"
-						src="https://static.vecteezy.com/system/resources/thumbnails/005/129/844/small/profile-user-icon-isolated-on-white-background-eps10-free-vector.jpg"
-						alt="avatar"
-					/>
-				) : (
-					<img
-						className="h-48 w-48 object-cover mb-3 rounded"
-						src={user.profileImage}
-						alt={user.username}
-					/>
+			<div className="flex justify-between items-start w-full">
+				<UserInfo user={user} />
+				{activeUser !== user._id && (
+					<button
+						onClick={handleFollowUser}
+						className="bg-[#d9674e] text-white font-bold py-2 px-6 m-5 rounded text-lg hover:bg-[#b4563d]"
+					>
+						Follow
+					</button>
 				)}
-				<p className="text-gray-700 mb-4">Bio: {user.bio}</p>
-				<p className="text-gray-700 mb-4">Quote: {user.quote}</p>
-				<p className="text-gray-700 mb-4">
-					Checks: {user.checkedMovies.length}
-				</p>
-				<p className="text-gray-700 mb-4">
-					Favorites: {user.favoriteMovies.length}
-				</p>
 			</div>
+
 			<hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
 			<div className="bg-gray-100 p-3 rounded mb-4">
 				<h2 className="text-3xl font-extrabold text-gray-700">

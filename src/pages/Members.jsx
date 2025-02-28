@@ -17,12 +17,6 @@ function Members() {
 		fetchAllMembers();
 	}, []);
 
-	console.log(
-		members.map((member) => {
-			console.log(member.username);
-		})
-	);
-
 	return (
 		<div className="flex flex-col items-start justify-start">
 			<h1 className="text-5xl font-extrabold dark:text-white mb-5">Members:</h1>
