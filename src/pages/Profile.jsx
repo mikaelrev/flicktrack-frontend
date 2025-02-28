@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ListItem from "../components/ListItem";
 import UserInfo from "../components/UserInfo";
@@ -16,20 +16,15 @@ function Profile() {
 
 	const config = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
 
-	const fetchUser = async (userId) => {
+	const fetchUser = useCallback(async (userId) => {
 		try {
 			const response = await axios(`http://localhost:3000/users/${userId}`);
-
-			const fetchedUser = response.data.user;
-
-			setUser(fetchedUser);
-			const isFollowing = fetchedUser.followers.includes(activeUser);
-			setIsFollowing(isFollowing);
+			setUser(response.data.user);
+			setCheckedMovies(response.data.user.checkedMovies);
 		} catch (err) {
 			console.log(err);
-			setError(err.message);
 		}
-	};
+	}, []);
 
 	const fetchCheckedMovies = async (userId) => {
 		try {
@@ -74,7 +69,7 @@ function Profile() {
 	useEffect(() => {
 		fetchUser(userId);
 		fetchCheckedMovies(userId);
-	}, [userId]);
+	}, [userId, fetchUser]);
 
 	if (error) {
 		return <p>Error: {error}</p>;
