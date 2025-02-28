@@ -6,9 +6,9 @@ function MemberItem({ member }) {
 			{member.username === undefined ? (
 				""
 			) : (
-				<div className="flex items-center gap-3 p-2">
+				<div className="bg-gray-300 p-3 rounded w-full">
 					<Link
-						className="flex items-center gap-3"
+						className="flex gap-3 items-center"
 						to={`/profile/${member._id}`}
 					>
 						<img
@@ -19,8 +19,25 @@ function MemberItem({ member }) {
 							}
 							alt={`${member.username}'s profile picture`}
 						/>
-						<p className="text-blue-500">{member.username}</p>
+						<div className="flex flex-col">
+							<p className="text-blue-500">{member.username}</p>
+						</div>
 					</Link>
+					<div className="flex justify-between bg-gray-300 rounded gap-3 p-5">
+						<p className="text-gray-700">
+							Checked movies: {member.checkedMovies.length}
+						</p>
+						<p className="text-gray-700">
+							Favorite movies: {member.favoriteMovies.length}
+						</p>
+						<p className="text-gray-700">Lists: {member.lists.length}</p>
+						<p className="text-gray-700">
+							Following: {member.following.length}
+						</p>
+						<p className="text-gray-700">
+							Followers: {member.followers.length}
+						</p>
+					</div>
 				</div>
 			)}
 		</div>

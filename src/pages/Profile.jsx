@@ -20,7 +20,11 @@ function Profile() {
 		try {
 			const response = await axios(`http://localhost:3000/users/${userId}`);
 
-			setUser(response.data.user);
+			const fetchedUser = response.data.user;
+
+			setUser(fetchedUser);
+			const isFollowing = fetchedUser.followers.includes(activeUser);
+			setIsFollowing(isFollowing);
 		} catch (err) {
 			console.log(err);
 			setError(err.message);
@@ -84,14 +88,22 @@ function Profile() {
 		<div>
 			<div className="flex justify-between items-start w-full">
 				<UserInfo user={user} />
-				{activeUser !== user._id && (
-					<button
-						onClick={handleFollowUser}
-						className="bg-[#d9674e] text-white font-bold py-2 px-6 m-5 rounded text-lg hover:bg-[#b4563d]"
-					>
-						Follow
-					</button>
-				)}
+				{activeUser !== user._id &&
+					(isFollowing === true ? (
+						<button
+							onClick={handleUnfollowUser}
+							className="bg-[#d9674e] text-white font-bold py-2 px-6 m-5 rounded text-lg hover:bg-[#b4563d]"
+						>
+							Unfollow
+						</button>
+					) : (
+						<button
+							onClick={handleFollowUser}
+							className="bg-[#d9674e] text-white font-bold py-2 px-6 m-5 rounded text-lg hover:bg-[#b4563d]"
+						>
+							Follow
+						</button>
+					))}
 			</div>
 
 			<hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>

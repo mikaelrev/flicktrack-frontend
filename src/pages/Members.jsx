@@ -18,7 +18,7 @@ function Members() {
 	}, []);
 
 	return (
-		<div className="flex flex-col items-start justify-start">
+		<div className="flex flex-col gap-3">
 			<h1 className="text-5xl font-extrabold dark:text-white mb-5">Members:</h1>
 			{!members || members.length === 0
 				? "No members found"

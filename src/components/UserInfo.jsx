@@ -23,6 +23,8 @@ function UserInfo({ user }) {
 			<p className="text-gray-700 mb-4">
 				Favorites: {user.favoriteMovies.length}
 			</p>
+			<p className="text-gray-700 mb-4">Followers: {user.followers.length}</p>
+			<p className="text-gray-700 mb-4">Following: {user.following.length}</p>
 		</div>
 	);
 }
