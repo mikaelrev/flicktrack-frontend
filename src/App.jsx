@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import List from "./pages/List";
 import CheckedMovies from "./pages/CheckedMovies";
 import FavoriteMovies from "./pages/FavoriteMovies";
+import Members from "./pages/Members";
 
 function App() {
 	const [movies, setMovies] = useState([]);
@@ -29,6 +30,7 @@ function App() {
 				<div className="container md:container md:mx-auto mt-5 p-5">
 					<Routes>
 						<Route path="/" element={<Homepage movies={movies} />} />
+						<Route path="/members" element={<Members />} />
 						<Route path="/movies" element={<Movies />} />
 						<Route path="/movies/:movieId" element={<MovieDetails />} />
 						<Route path="/lists" element={<Lists />} />

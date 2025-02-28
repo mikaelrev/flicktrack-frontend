@@ -27,6 +27,9 @@ function Navbar() {
 					{userId ? (
 						<>
 							<li>
+								<NavLink to="/members">Members</NavLink>
+							</li>
+							<li>
 								<NavLink to="/movies?page=1">Movies</NavLink>
 							</li>
 							<li>
