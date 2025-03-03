@@ -4,10 +4,12 @@ import ListItem from "../components/ListItem";
 import UserInfo from "../components/UserInfo";
 import axios from "axios";
 import CheckedMovieItem from "../components/CheckedMovieItem";
+import FavoriteMovieItem from "../components/FavoriteMovieItem";
 
 function Profile() {
 	const { userId } = useParams();
 	const [checkedMovies, setCheckedMovies] = useState([]);
+	const [favoriteMovies, setFavoriteMovies] = useState([]);
 	const [user, setUser] = useState(null);
 	const [error, setError] = useState(null);
 	const [isFollowing, setIsFollowing] = useState("");
@@ -33,6 +35,18 @@ function Profile() {
 			);
 
 			setCheckedMovies(response.data.checkedMovies);
+		} catch (err) {
+			setError(err.message);
+		}
+	};
+
+	const fetchFavoriteMovies = async (userId) => {
+		try {
+			const response = await axios(
+				`http://localhost:3000/users/${userId}/favorites`
+			);
+
+			setFavoriteMovies(response.data.favoriteMovies);
 		} catch (err) {
 			setError(err.message);
 		}
@@ -69,6 +83,7 @@ function Profile() {
 	useEffect(() => {
 		fetchUser(userId);
 		fetchCheckedMovies(userId);
+		fetchFavoriteMovies(userId);
 	}, [userId, fetchUser]);
 
 	if (error) {
@@ -79,7 +94,7 @@ function Profile() {
 		return <p>Loading...</p>;
 	}
 
-	console.log(checkedMovies);
+	console.log(user);
 
 	return (
 		<div>
@@ -104,24 +119,45 @@ function Profile() {
 			</div>
 
 			<hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
-			<div className="bg-gray-100 p-3 rounded mb-4">
-				<h2 className="text-3xl font-extrabold text-gray-700">
-					Checked movies:
-				</h2>
-				<div className="flex flex-col">
-					{checkedMovies.slice(0, 3).map((movie) => {
-						return <CheckedMovieItem movie={movie} key={movie._id} />;
-					})}
-				</div>
+			<div className="flex justify-between gap-1">
+				<div className="bg-gray-100 p-3 rounded mb-4 flex-1">
+					<h2 className="text-3xl font-extrabold text-gray-700">
+						Checked movies:
+					</h2>
+					<div className="flex flex-col">
+						{checkedMovies.slice(0, 3).map((movie) => {
+							return <CheckedMovieItem movie={movie} key={movie._id} />;
+						})}
+					</div>
 
-				{checkedMovies.length > 3 && (
-					<Link
-						to={`/profile/${user._id}/checkedmovies`}
-						className="text-blue-500 mt-3 inline-block hover:underline"
-					>
-						View All Checked Movies →
-					</Link>
-				)}
+					{checkedMovies.length > 3 && (
+						<Link
+							to={`/profile/${user._id}/checkedmovies`}
+							className="text-blue-500 mt-3 inline-block hover:underline"
+						>
+							View All Checked Movies →
+						</Link>
+					)}
+				</div>
+				<div className="bg-gray-100 p-3 rounded mb-4 flex-1">
+					<h2 className="text-3xl font-extrabold text-gray-700">
+						Favorite movies:
+					</h2>
+					<div className="flex flex-col">
+						{favoriteMovies.slice(0, 3).map((movie) => {
+							return <FavoriteMovieItem movie={movie} key={movie._id} />;
+						})}
+					</div>
+
+					{favoriteMovies.length > 3 && (
+						<Link
+							to={`/profile/${user._id}/favoritemovies`}
+							className="text-blue-500 mt-3 inline-block hover:underline"
+						>
+							View All Favorite Movies →
+						</Link>
+					)}
+				</div>
 			</div>
 
 			<div className="bg-gray-100 p-3 rounded">
@@ -134,28 +170,33 @@ function Profile() {
 							</div>
 					  ))}
 			</div>
-			<div className="bg-gray-200 p-3 rounded-md mt-5">
+			<div className="flex flex-col gap-5 bg-gray-100 p-3 rounded-md mt-5">
+				<h2 className="text-3xl font-extrabold text-gray-700">Comments:</h2>
 				{user.comments.length === 0 ? (
 					<p>No comments yet.</p>
 				) : (
 					user.comments.map((comment) => (
-						<div key={comment._id} className="flex flex-col">
-							<h2 className="text-3xl font-extrabold text-gray-700">
-								Comments:
-							</h2>
-							<div className="flex items-center gap-3">
-								<div>
-									<p className="font-bold">
-										{comment.movie?.title || "Deleted Movie"}
-									</p>
+						<div key={comment._id} className="flex flex-col gap-3 px-3">
+							<div className="flex flex-col">
+								<p className="font-bold mb-3">
+									Movie comment on{" "}
+									<Link
+										to={`/movies/${comment.movie.tmdbId}`}
+										className="text-blue-500"
+									>
+										{comment.movie?.title}
+									</Link>
+								</p>
+								<div className="flex items-center gap-3">
 									<img
 										src={comment.movie?.posterUrl}
 										alt={comment.movie?.title}
 										className="w-20 h-30"
 									/>
+									<p>{comment.content}</p>
 								</div>
-								<p>{comment.content}</p>
 							</div>
+							<hr className="my-3 border-t border-gray-200 dark:border-gray-700" />
 						</div>
 					))
 				)}
