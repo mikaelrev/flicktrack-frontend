@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import ListItem from "../components/ListItem";
 import UserInfo from "../components/UserInfo";
 import axios from "axios";
+import CheckedMovieItem from "../components/CheckedMovieItem";
 
 function Profile() {
 	const { userId } = useParams();
@@ -109,20 +110,7 @@ function Profile() {
 				</h2>
 				<div className="flex flex-col">
 					{checkedMovies.slice(0, 3).map((movie) => {
-						return (
-							<Link
-								to={`/movies/${movie.tmdbId}`}
-								key={movie._id}
-								className="flex items-center gap-3 hover:bg-gray-200 p-2 rounded transition"
-							>
-								<img
-									className="h-30 w-15 object-contain"
-									src={movie.posterUrl}
-									alt={`Poster for ${movie.title}`}
-								/>
-								<p className="font-semibold">{movie.title}</p>
-							</Link>
-						);
+						return <CheckedMovieItem movie={movie} key={movie._id} />;
 					})}
 				</div>
 
