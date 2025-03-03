@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
+import Button from "../components/Button";
 
 function List() {
 	const { listId } = useParams();
@@ -67,16 +68,16 @@ function List() {
 						{list.movies.map((movie) => (
 							<div
 								key={movie._id}
-								className="flex items-start justify-start p-5 bg-gray-300 w-full"
+								className="flex items-center justify-between p-5 bg-gray-300 w-full"
 							>
 								<MovieCard movie={movie} size="extra-small" />
-								<button
-									className="p-5 bg-gray-200"
-									disabled={isLoading}
+								<Button
+									bgColor="salmon"
+									isLoading={isLoading}
 									onClick={() => removeMovieFromList(movie)}
 								>
 									Remove from list
-								</button>
+								</Button>
 							</div>
 						))}
 					</ul>

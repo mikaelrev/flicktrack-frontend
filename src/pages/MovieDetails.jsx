@@ -4,6 +4,8 @@ import axios from "axios";
 import AddCommentForm from "../components/AddCommentForm";
 import AlertNotification from "../components/AlertNotification";
 import CommentItem from "../components/CommentItem";
+import Button from "../components/Button";
+import AddToListForm from "../components/AddToListForm";
 
 function MovieDetails() {
 	const { movieId } = useParams();
@@ -12,6 +14,7 @@ function MovieDetails() {
 	const [isFavorite, setIsFavorite] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [notificationMessage, setNotificationMessage] = useState("");
+	const [isListModalOpen, setIsListModalOpen] = useState(false);
 
 	const token = localStorage.getItem("token");
 	const userId = localStorage.getItem("userId");
@@ -151,20 +154,19 @@ function MovieDetails() {
 							{movie.actors.join(", ")}
 						</p>
 					</div>
-					<button
-						className="p-5 bg-gray-200"
+					<Button
 						onClick={!isChecked ? addMovieToChecked : removeMovieFromChecked}
-						disabled={isLoading}
+						isLoading={isLoading}
 					>
 						{isLoading
 							? "Processing..."
 							: isChecked
 							? "Remove from checked"
 							: "Check movie"}
-					</button>
-					<button
-						className="p-5 bg-blue-200"
-						disabled={isLoading}
+					</Button>
+					<Button
+						bgColor="cyan"
+						isLoading={isLoading}
 						onClick={
 							!isFavorite ? addMovieToFavorites : removeMovieFromFavorites
 						}
@@ -174,8 +176,22 @@ function MovieDetails() {
 							: isFavorite
 							? "Remove from Favorites"
 							: "Add to Favorites"}
-					</button>
+					</Button>
+					<Button bgColor="tomato" onClick={() => setIsListModalOpen(true)}>
+						Add to a list
+					</Button>
 				</div>
+
+				{isListModalOpen && (
+					<AddToListForm
+						isOpen={isListModalOpen}
+						onClose={() => setIsListModalOpen(false)}
+						config={config}
+						userId={userId}
+						token={token}
+						movieId={movie._id}
+					/>
+				)}
 
 				{notificationMessage && (
 					<AlertNotification
@@ -184,6 +200,7 @@ function MovieDetails() {
 					/>
 				)}
 			</div>
+
 			<div className="mt-5 flex flex-col gap-3">
 				<div className="mb-5">
 					<AddCommentForm movieId={movie._id} onCommentAdded={fetchMovie} />
