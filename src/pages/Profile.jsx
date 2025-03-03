@@ -34,7 +34,9 @@ function Profile() {
 				`http://localhost:3000/users/${userId}/checked`
 			);
 
-			setCheckedMovies(response.data.checkedMovies);
+			const checkedResponse = response.data.checkedMovies;
+			const sortedCheckedMovies = checkedResponse.reverse();
+			setCheckedMovies(sortedCheckedMovies);
 		} catch (err) {
 			setError(err.message);
 		}
@@ -46,7 +48,9 @@ function Profile() {
 				`http://localhost:3000/users/${userId}/favorites`
 			);
 
-			setFavoriteMovies(response.data.favoriteMovies);
+			const favoritesResponse = response.data.favoriteMovies;
+			const sortedFavoriteMovies = favoritesResponse.reverse();
+			setFavoriteMovies(sortedFavoriteMovies);
 		} catch (err) {
 			setError(err.message);
 		}
