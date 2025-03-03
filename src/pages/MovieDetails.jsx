@@ -9,6 +9,7 @@ function MovieDetails() {
 	const { movieId } = useParams();
 	const [movie, setMovie] = useState("");
 	const [isChecked, setIsChecked] = useState(false);
+	const [isFavorite, setIsFavorite] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [notificationMessage, setNotificationMessage] = useState("");
 
@@ -26,13 +27,25 @@ function MovieDetails() {
 			);
 			setMovie(movieResponse.data);
 
-			const userResponse = await axios.get(
+			const userCheckedResponse = await axios.get(
 				`http://localhost:3000/users/${userId}/checked`
 			);
-			const userCheckedMovies = userResponse.data.checkedMovies;
+			const userCheckedMovies = userCheckedResponse.data.checkedMovies;
 
 			setIsChecked(
 				userCheckedMovies
+					.map((movie) => movie._id)
+					.includes(movieResponse.data._id)
+			);
+
+			const userFavoritesResponse = await axios.get(
+				`http://localhost:3000/users/${userId}/favorites`
+			);
+
+			const userFavoriteMovies = userFavoritesResponse.data.favoriteMovies;
+
+			setIsFavorite(
+				userFavoriteMovies
 					.map((movie) => movie._id)
 					.includes(movieResponse.data._id)
 			);
@@ -72,6 +85,37 @@ function MovieDetails() {
 			setNotificationMessage("Movie has been unchecked");
 		} catch (error) {
 			console.error("Error removing movie from checked list:", error);
+		}
+		setIsLoading(false);
+	};
+
+	const addMovieToFavorites = async () => {
+		setIsLoading(true);
+		try {
+			await axios.post(
+				`http://localhost:3000/users/movies/${movie._id}/favorites`,
+				{},
+				config
+			);
+			setIsFavorite(true);
+			setNotificationMessage("Movie has been added to favorites");
+		} catch (error) {
+			console.error("Error adding movie to favorite list:", error);
+		}
+		setIsLoading(false);
+	};
+
+	const removeMovieFromFavorites = async () => {
+		setIsLoading(true);
+		try {
+			await axios.delete(
+				`http://localhost:3000/users/movies/${movie._id}/favorites`,
+				config
+			);
+			setIsFavorite(false);
+			setNotificationMessage("Movie has been removed from favorites");
+		} catch (error) {
+			console.error("Error removing movie from favorite list:", error);
 		}
 		setIsLoading(false);
 	};
@@ -117,6 +161,19 @@ function MovieDetails() {
 							: isChecked
 							? "Remove from checked"
 							: "Check movie"}
+					</button>
+					<button
+						className="p-5 bg-blue-200"
+						disabled={isLoading}
+						onClick={
+							!isFavorite ? addMovieToFavorites : removeMovieFromFavorites
+						}
+					>
+						{isLoading
+							? "Processing..."
+							: isFavorite
+							? "Remove from Favorites"
+							: "Add to Favorites"}
 					</button>
 				</div>
 

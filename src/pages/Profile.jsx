@@ -20,7 +20,6 @@ function Profile() {
 		try {
 			const response = await axios(`http://localhost:3000/users/${userId}`);
 			setUser(response.data.user);
-			setCheckedMovies(response.data.user.checkedMovies);
 		} catch (err) {
 			console.log(err);
 		}
@@ -78,6 +77,8 @@ function Profile() {
 	if (!user) {
 		return <p>Loading...</p>;
 	}
+
+	console.log(checkedMovies);
 
 	return (
 		<div>
