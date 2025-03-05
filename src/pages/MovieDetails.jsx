@@ -123,6 +123,17 @@ function MovieDetails() {
 		setIsLoading(false);
 	};
 
+	const handleDeleteComment = async (commentId) => {
+		setIsLoading(true);
+		try {
+			await axios.delete(`http://localhost:3000/comments/${commentId}`, config);
+			fetchMovie();
+		} catch (error) {
+			console.log(error);
+		}
+		setIsLoading(false);
+	};
+
 	if (!movie) return <div>Loading...</div>;
 
 	return (
@@ -210,7 +221,14 @@ function MovieDetails() {
 					<p>{`${movie.title} doesn't have any comments`}</p>
 				) : (
 					movie.comments.map((comment) => {
-						return <CommentItem key={comment._id} comment={comment} />;
+						return (
+							<CommentItem
+								key={comment._id}
+								comment={comment}
+								onHandleDelete={handleDeleteComment}
+								userId={userId}
+							/>
+						);
 					})
 				)}
 			</div>
