@@ -77,18 +77,20 @@ function Lists() {
 					: lists.map((list) =>
 							list ? (
 								<div
-									className="flex justify-between bg-gray-300 rounded p-5"
+									className="flex items-center justify-between bg-gray-300 rounded p-5"
 									key={list._id}
 								>
 									<ListItem list={list} />
-									<Button
-										bgColor={"#d11a2a"}
-										py={2}
-										px={3}
-										onClick={() => handleDeleteList(list._id)}
-									>
-										Delete list
-									</Button>
+									<div className="flex-shrink-0">
+										<Button
+											bgColor={"#d11a2a"}
+											py={2}
+											px={3}
+											onClick={() => handleDeleteList(list._id)}
+										>
+											Delete list
+										</Button>
+									</div>
 								</div>
 							) : null
 					  )}

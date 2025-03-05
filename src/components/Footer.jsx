@@ -1,6 +1,6 @@
 function Footer() {
 	return (
-		<footer className="w-full flex items-center justify-center p-3 mt-5 bg-[green] p-5">
+		<footer className="w-full flex items-center justify-center p-3 mt-5 bg-[#7e1616] p-5">
 			<ul className="flex gap-5">
 				<li>About</li>
 				<li>FAQ</li>

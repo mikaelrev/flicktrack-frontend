@@ -44,7 +44,7 @@ function AddCommentForm({ movieId, onCommentAdded }) {
 					value={comment}
 					onChange={(e) => setComment(e.target.value)}
 					placeholder="Enter your comment"
-					className="border p-2 rounded w-full"
+					className="border border-gray-400 p-2 rounded w-full"
 					required
 				/>
 				<Button

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "../components/Button";
 
 const Signup = () => {
 	const [username, setUsername] = useState("");
@@ -121,15 +122,17 @@ const Signup = () => {
 							className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
 						/>
 					</div>
-					<button
-						type="submit"
-						disabled={loading}
-						className={`w-full py-2 rounded bg-blue-600 text-white font-semibold hover:bg-blue-700 transition duration-200 ${
-							loading ? "opacity-50 cursor-not-allowed" : ""
-						}`}
-					>
-						{loading ? "Signing up..." : "Sign Up"}
-					</button>
+					<div className="flex-shrink-0">
+						<Button
+							type="submit"
+							isLoading={loading}
+							bgColor={"#2b7fff"}
+							py={2}
+							px={3}
+						>
+							{loading ? "Signing up..." : "Sign Up"}
+						</Button>
+					</div>
 					{error && <p className="mt-2 text-red-500">{error}</p>}
 				</form>
 				<p className="mt-4 text-center">

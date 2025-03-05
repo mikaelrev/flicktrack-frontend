@@ -5,6 +5,7 @@ import UserInfo from "../components/UserInfo";
 import axios from "axios";
 import CheckedMovieItem from "../components/CheckedMovieItem";
 import FavoriteMovieItem from "../components/FavoriteMovieItem";
+import Button from "../components/Button";
 
 function Profile() {
 	const { userId } = useParams();
@@ -19,14 +20,21 @@ function Profile() {
 
 	const config = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
 
-	const fetchUser = useCallback(async (userId) => {
-		try {
-			const response = await axios(`http://localhost:3000/users/${userId}`);
-			setUser(response.data.user);
-		} catch (err) {
-			console.log(err);
-		}
-	}, []);
+	const fetchUser = useCallback(
+		async (userId) => {
+			try {
+				const response = await axios(`http://localhost:3000/users/${userId}`);
+				const fetchedUser = response.data.user;
+				setUser(fetchedUser);
+
+				const isUserFollowing = fetchedUser.followers.includes(activeUser);
+				setIsFollowing(isUserFollowing);
+			} catch (err) {
+				console.log(err);
+			}
+		},
+		[activeUser]
+	);
 
 	const fetchCheckedMovies = async (userId) => {
 		try {
@@ -104,22 +112,19 @@ function Profile() {
 		<div>
 			<div className="flex justify-between items-start w-full">
 				<UserInfo user={user} />
-				{activeUser !== user._id &&
-					(isFollowing === true ? (
-						<button
-							onClick={handleUnfollowUser}
-							className="bg-[#d9674e] text-white font-bold py-2 px-6 m-5 rounded text-lg hover:bg-[#b4563d]"
-						>
-							Unfollow
-						</button>
-					) : (
-						<button
-							onClick={handleFollowUser}
-							className="bg-[#d9674e] text-white font-bold py-2 px-6 m-5 rounded text-lg hover:bg-[#b4563d]"
-						>
-							Follow
-						</button>
-					))}
+				{activeUser !== user._id && (
+					<Button
+						onClick={isFollowing ? handleUnfollowUser : handleFollowUser}
+						borderWidth={isFollowing ? "border" : ""}
+						borderColor={isFollowing ? "border-gray-500" : ""}
+						bgColor={isFollowing ? "" : "#2b7fff"}
+						textColor={isFollowing && "text-gray-700"}
+						py={2}
+						px={3}
+					>
+						{isFollowing ? "Unfollow" : "Follow"}
+					</Button>
+				)}
 			</div>
 
 			<hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>

@@ -8,7 +8,7 @@ function Button({
 	borderColor,
 	borderStyle,
 	bgColor = "red",
-	textColor = "white",
+	textColor = "text-white",
 	py = 5,
 	px = 5,
 }) {
@@ -18,7 +18,7 @@ function Button({
 			disabled={isLoading}
 			onClick={onClick}
 			style={{ backgroundColor: bgColor }}
-			className={`text-${textColor} py-${py} px-${px} ${borderRadius} ${borderWidth} ${borderColor} border-${borderStyle}`}
+			className={`${textColor} py-${py} px-${px} ${borderRadius} ${borderWidth} ${borderColor} border-${borderStyle}`}
 		>
 			{children}
 		</button>

@@ -18,9 +18,9 @@ function Navbar() {
 	};
 
 	return (
-		<nav className="w-full flex justify-between p-3 bg-[green]">
+		<nav className="w-full flex justify-between p-3 bg-[#7e1616] text-white">
 			<div className="container mx-auto flex justify-between w-full">
-				<span className="text-3xl brand-icon">
+				<span className="text-3xl brand-icon ">
 					<Link to="/">Flicktrack</Link>
 				</span>
 				<ul className="flex gap-5 items-center">
