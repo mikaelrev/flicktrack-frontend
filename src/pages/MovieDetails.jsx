@@ -190,6 +190,7 @@ function MovieDetails() {
 						userId={userId}
 						token={token}
 						movieId={movie._id}
+						setNotificationMessage={setNotificationMessage}
 					/>
 				)}
 

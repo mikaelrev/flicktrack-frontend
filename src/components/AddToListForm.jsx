@@ -2,7 +2,14 @@ import { useCallback, useEffect, useState } from "react";
 import Button from "./Button";
 import axios from "axios";
 
-function AddToListForm({ isOpen, onClose, config, movieId, userId }) {
+function AddToListForm({
+	isOpen,
+	onClose,
+	config,
+	movieId,
+	userId,
+	setNotificationMessage,
+}) {
 	const [userLists, setUserLists] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState("");
@@ -49,6 +56,7 @@ function AddToListForm({ isOpen, onClose, config, movieId, userId }) {
 			);
 
 			setError("");
+			setNotificationMessage(`Movie added to list`);
 			onClose();
 		} catch (error) {
 			setError("Network error occured");

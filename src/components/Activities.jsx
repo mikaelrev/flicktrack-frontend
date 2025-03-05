@@ -11,7 +11,8 @@ function Activities() {
 				const activitiesResponse = await axios.get(
 					"http://localhost:3000/activities"
 				);
-				setActivities(activitiesResponse.data.activities);
+				const sortedActivities = activitiesResponse.data.activities.reverse();
+				setActivities(sortedActivities);
 			} catch (error) {
 				console.log(error);
 			}

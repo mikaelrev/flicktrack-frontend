@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
 import Button from "../components/Button";
+import AlertNotification from "../components/AlertNotification";
 
 function List() {
 	const { listId } = useParams();
 	const [list, setList] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
+	const [notificationMessage, setNotificationMessage] = useState("");
 
 	const token = localStorage.getItem("token");
 
@@ -42,6 +44,8 @@ function List() {
 				...prevList,
 				movies: prevList.movies.filter((m) => m._id !== movie._id),
 			}));
+
+			setNotificationMessage("Removed from list");
 		} catch (error) {
 			console.error("Error removing movie from list:", error);
 		}
@@ -82,6 +86,12 @@ function List() {
 						))}
 					</ul>
 				</div>
+			)}
+			{notificationMessage && (
+				<AlertNotification
+					message={notificationMessage}
+					onClose={() => setNotificationMessage("")}
+				/>
 			)}
 		</div>
 	);
