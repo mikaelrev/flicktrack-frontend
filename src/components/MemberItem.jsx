@@ -6,7 +6,7 @@ function MemberItem({ member }) {
 			{member.username === undefined ? (
 				""
 			) : (
-				<div className="bg-gray-300 p-3 rounded w-full">
+				<div className="flex flex-col gap-3 bg-gray-300 p-3 rounded">
 					<Link
 						className="flex gap-3 items-center"
 						to={`/profile/${member._id}`}
@@ -23,7 +23,7 @@ function MemberItem({ member }) {
 							<p className="text-blue-500">{member.username}</p>
 						</div>
 					</Link>
-					<div className="flex justify-between bg-gray-300 rounded gap-3 p-5">
+					<div className="flex justify-between bg-gray-300 rounded gap-3">
 						<p className="text-gray-700">
 							Checked movies: {member.checkedMovies.length}
 						</p>

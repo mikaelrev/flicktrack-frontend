@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ListItem from "../components/ListItem";
 import CreateListModal from "../components/CreateListModal";
 import axios from "axios";
+import Button from "../components/Button";
 
 function Lists() {
 	const [lists, setLists] = useState([]);
@@ -59,14 +60,16 @@ function Lists() {
 	return (
 		<div>
 			<h1 className="text-5xl font-extrabold dark:text-white mb-5">Lists</h1>
-			<button
-				className="mb-4 p-3 bg-blue-500 text-white rounded-md"
+			<Button
+				py={2}
+				px={3}
+				bgColor={"#2b7fff"}
 				onClick={() => setIsModalOpen(true)}
 			>
 				Create new list
-			</button>
+			</Button>
 
-			<ul className="flex flex-col gap-3">
+			<ul className="flex flex-col gap-3 mt-5">
 				{error ? <p>{error}</p> : null}
 				{isLoading ? <p>Loading...</p> : null}
 				{!lists || lists.length === 0
@@ -78,12 +81,14 @@ function Lists() {
 									key={list._id}
 								>
 									<ListItem list={list} />
-									<button
-										className="p-2 bg-red-500 text-white rounded"
+									<Button
+										bgColor={"#d11a2a"}
+										py={2}
+										px={3}
 										onClick={() => handleDeleteList(list._id)}
 									>
 										Delete list
-									</button>
+									</Button>
 								</div>
 							) : null
 					  )}

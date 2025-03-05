@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import Button from "./Button";
 
 function AddCommentForm({ movieId, onCommentAdded }) {
 	const [comment, setComment] = useState("");
@@ -46,13 +47,14 @@ function AddCommentForm({ movieId, onCommentAdded }) {
 					className="border p-2 rounded w-full"
 					required
 				/>
-				<button
-					type="submit"
-					className="p-2 bg-blue-500 text-white rounded disabled:bg-gray-400"
-					disabled={isLoading}
+				<Button
+					type={"submit"}
+					isLoading={isLoading}
+					bgColor="#2b7fff"
+					textColor="white"
 				>
 					{isLoading ? "Posting..." : "Post Comment"}
-				</button>
+				</Button>
 				{error && <p className="text-red-500">{error}</p>}
 			</form>
 		</div>

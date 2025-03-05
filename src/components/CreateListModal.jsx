@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "./Button";
 
 function CreateListModal({ isOpen, onClose, onListCreated }) {
 	const [newListName, setNewListName] = useState("");
@@ -50,21 +51,32 @@ function CreateListModal({ isOpen, onClose, onListCreated }) {
 				<input
 					type="text"
 					placeholder="Enter list name"
-					className="border p-2 w-full mb-3"
+					className="border border-gray-500 p-2 w-full mb-3 rounded-sm"
 					value={newListName}
 					onChange={(e) => setNewListName(e.target.value)}
 				/>
 				<div className="flex justify-end gap-2">
-					<button className="p-2 bg-gray-300 rounded" onClick={onClose}>
+					<Button
+						bgColor="none"
+						textColor="black"
+						borderWidth="border"
+						borderColor={"border-gray-400"}
+						py={2}
+						px={3}
+						onClick={onClose}
+					>
 						Cancel
-					</button>
-					<button
-						className="p-2 bg-blue-500 text-white rounded"
+					</Button>
+					<Button
+						py={1}
+						px={3}
+						bgColor={"#28a745"}
+						textColor="black"
 						onClick={createNewList}
 						disabled={isLoading}
 					>
 						{isLoading ? "Creating..." : "Create"}
-					</button>
+					</Button>
 				</div>
 			</div>
 		</div>

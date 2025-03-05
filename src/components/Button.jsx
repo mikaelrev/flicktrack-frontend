@@ -1,21 +1,24 @@
 function Button({
 	children,
-	type = "",
+	type = "button",
 	isLoading,
 	onClick,
-	textColor,
-	bgColor = "pink",
-	paddingSize = 5,
+	borderRadius = "rounded-sm",
+	borderWidth,
+	borderColor,
+	borderStyle,
+	bgColor = "red",
+	textColor = "white",
+	py = 5,
+	px = 5,
 }) {
-	const textClass = `${textColor}`;
-	const paddingClass = `p-${paddingSize}`;
 	return (
 		<button
 			type={type}
 			disabled={isLoading}
 			onClick={onClick}
 			style={{ backgroundColor: bgColor }}
-			className={`${textClass} ${paddingClass}`}
+			className={`text-${textColor} py-${py} px-${px} ${borderRadius} ${borderWidth} ${borderColor} border-${borderStyle}`}
 		>
 			{children}
 		</button>

@@ -76,7 +76,9 @@ function List() {
 							>
 								<MovieCard movie={movie} size="extra-small" />
 								<Button
-									bgColor="salmon"
+									bgColor={"#d11a2a"}
+									py={2}
+									px={3}
 									isLoading={isLoading}
 									onClick={() => removeMovieFromList(movie)}
 								>
