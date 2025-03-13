@@ -219,7 +219,7 @@ function MovieDetails() {
 					<AddCommentForm movieId={movie._id} onCommentAdded={fetchMovie} />
 				</div>
 				{movie.comments.length === 0 ? (
-					<p>{`${movie.title} doesn't have any comments`}</p>
+					<p className="text-gray-300">{`${movie.title} doesn't have any comments`}</p>
 				) : (
 					movie.comments.map((comment) => {
 						return (
