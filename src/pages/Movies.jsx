@@ -32,7 +32,7 @@ function Movies() {
 	return (
 		<div>
 			<h1 className="text-5xl font-extrabold text-white mb-5">Movies</h1>
-			<ul className="grid grid-cols-5 gap-5">
+			<ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5">
 				{movies.map((movie) => (
 					<MovieCard movie={movie} key={movie.id} />
 				))}

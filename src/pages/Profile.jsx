@@ -126,7 +126,7 @@ function Profile() {
 			</div>
 
 			<hr className="h-px my-8 bg-gray-500 border-0"></hr>
-			<div className="flex justify-between gap-1">
+			<div className="flex flex-col md:flex-row justify-between gap-1">
 				<div className="bg-gray-600 p-3 rounded mb-4 flex-1">
 					<h2 className="text-3xl font-extrabold text-white">
 						Checked movies:

@@ -5,7 +5,7 @@ function CommentItem({ comment, onHandleDelete, userId }) {
 	if (!comment.user) return null;
 
 	return (
-		<div className="flex items-center bg-gray-600 text-gray-300 p-5 gap-3 rounded">
+		<div className="flex flex-col md:flex-row md:items-center bg-gray-600 text-gray-300 p-5 gap-3 rounded">
 			<Link to={`/profile/${comment.user._id}`}>
 				<img
 					src={
@@ -17,7 +17,7 @@ function CommentItem({ comment, onHandleDelete, userId }) {
 					alt={`${comment.user.username}'s profile picture`}
 				/>
 			</Link>
-			<div className="flex justify-between flex-1">
+			<div className="flex flex-col gap-2 md:gap-0 md:flex-row justify-between flex-1">
 				<div className="flex flex-col">
 					<Link
 						to={`/profile/${comment.user._id}`}

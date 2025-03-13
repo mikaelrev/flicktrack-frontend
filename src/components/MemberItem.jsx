@@ -23,7 +23,7 @@ function MemberItem({ member }) {
 							<p className="text-white">{member.username}</p>
 						</div>
 					</Link>
-					<div className="flex justify-between text-gray-300 rounded gap-3">
+					<div className="md:flex justify-between text-gray-300 rounded gap-3">
 						<p>Checked movies: {member.checkedMovies.length}</p>
 						<p>Favorite movies: {member.favoriteMovies.length}</p>
 						<p>Lists: {member.lists.length}</p>

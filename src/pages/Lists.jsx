@@ -63,27 +63,28 @@ function Lists() {
 			<Button
 				py={2}
 				px={3}
-				bgColor={"#2b7fff"}
+				bgColor={`bg-blue-500`}
+				hover={`hover:bg-blue-400`}
 				onClick={() => setIsModalOpen(true)}
 			>
 				Create new list
 			</Button>
 
 			<ul className="flex flex-col gap-3 mt-5">
-				{error ? <p>{error}</p> : null}
+				{error ? <p className="text-red-600">{error}</p> : null}
 				{isLoading ? <p>Loading...</p> : null}
 				{!lists || lists.length === 0
 					? "No lists found"
 					: lists.map((list) =>
 							list ? (
 								<div
-									className="flex items-center justify-between bg-gray-600 rounded p-5"
+									className="flex flex-col md:flex-row md:items-center justify-between bg-gray-600 rounded p-5"
 									key={list._id}
 								>
 									<ListItem list={list} />
 									<div className="flex-shrink-0">
 										<Button
-											bgColor={"#d11a2a"}
+											bgColor={`bg-red-600`}
 											py={2}
 											px={3}
 											onClick={() => handleDeleteList(list._id)}

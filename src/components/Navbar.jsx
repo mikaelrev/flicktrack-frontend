@@ -45,9 +45,9 @@ function Navbar() {
 			</div>
 
 			<ul
-				className={`md:flex md:flex-row flex-col gap-5 items-center bg-blue-900 md:bg-transparent p-5 md:p-0 transition-all duration-300 absolute md:static top-0 left-0 md:top-0 md:left-0 ${
+				className={`md:flex md:flex-row flex-col gap-5 items-center bg-blue-950 md:bg-transparent p-5 md:p-0 transition-all duration-300 absolute md:static top-0 left-0 md:top-0 md:left-0 md:w-auto w-full ${
 					isOpen ? "block" : "hidden"
-				} md:w-auto w-full`}
+				} `}
 				style={{
 					top: "3.5rem",
 				}}

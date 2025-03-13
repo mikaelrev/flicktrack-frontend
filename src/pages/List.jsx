@@ -72,7 +72,7 @@ function List() {
 						{list.movies.map((movie) => (
 							<div
 								key={movie._id}
-								className="flex items-center justify-between p-5 bg-gray-600 w-full rounded"
+								className="flex flex-col md:flex-row gap-2 md:gap-0 md:items-center justify-between p-5 bg-gray-600 w-full rounded"
 							>
 								<MovieCard movie={movie} size="extra-small" />
 								<Button

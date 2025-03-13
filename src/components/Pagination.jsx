@@ -4,7 +4,7 @@ function Pagination({ goToPage, page, totalPages }) {
 			<button
 				onClick={() => goToPage(page - 1)}
 				disabled={page === 1}
-				className="px-4 py-2 bg-gray-700 text-white rounded-md disabled:opacity-50"
+				className="px-4 py-2 bg-gray-700 text-white cursor-pointer rounded-md disabled:opacity-50"
 			>
 				Previous
 			</button>
@@ -16,7 +16,7 @@ function Pagination({ goToPage, page, totalPages }) {
 					<button
 						key={pageNumber}
 						onClick={() => goToPage(pageNumber)}
-						className={`px-4 py-2 rounded-md ${
+						className={`px-4 py-2 rounded-md cursor-pointer ${
 							page === pageNumber ? "bg-blue-500 text-white" : "bg-gray-300"
 						}`}
 					>
@@ -28,7 +28,7 @@ function Pagination({ goToPage, page, totalPages }) {
 			<button
 				onClick={() => goToPage(page + 1)}
 				disabled={page === totalPages}
-				className="px-4 py-2 bg-gray-700 text-white rounded-md disabled:opacity-50"
+				className="px-4 py-2 bg-gray-700 cursor-pointer text-white rounded-md disabled:opacity-50"
 			>
 				Next
 			</button>

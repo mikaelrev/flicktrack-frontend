@@ -139,27 +139,27 @@ function MovieDetails() {
 	return (
 		<div className="flex flex-col max-w-4xl mx-auto p-6">
 			<div>
-				<div className="flex flex-col items-center md:flex-row gap-8 mb-5">
+				<div className="flex flex-col items-start md:items-center lg:flex-row gap-8 mb-5">
 					<img
 						className="w-64 h-96 object-cover rounded-lg shadow-lg"
 						src={movie.posterUrl}
 						alt={movie.title}
 					/>
 
-					<div className="flex flex-col justify-between text-gray-300 gap-3">
+					<div className="flex flex-col justify-between text-gray-300 gap-1 md:gap-3">
 						<h1 className="text-4xl font-bold text-white">{movie.title}</h1>
 						<p className="text-lg">{movie.releaseYear}</p>
 						<p className="text-lg">{movie.runtime} minutes</p>
 						<p className="text-lg">
-							<span className="font-semibold">Directed by:</span>{" "}
+							<span className="font-semibold text-white">Directed by:</span>{" "}
 							{movie.directedBy}
 						</p>
 						<p className="text-lg">
-							<span className="font-semibold">Genres:</span>{" "}
+							<span className="font-semibold text-white">Genres:</span>{" "}
 							{movie.genre.join(", ")}
 						</p>
 						<p className="text-lg">
-							<span className="font-semibold">Cast:</span>{" "}
+							<span className="font-semibold text-white">Cast:</span>{" "}
 							{movie.actors.join(", ")}
 						</p>
 					</div>

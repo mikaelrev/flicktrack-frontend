@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 function MovieCard({ movie, size }) {
-	const movieId = movie.id === undefined ? movie._id : movie.id;
+	const movieId = movie.tmdbId ?? movie._id ?? movie.id;
 
 	const imageSizeClass = size === "extra-small" ? "w-16 h-24" : "w-full h-auto";
 
@@ -11,9 +11,7 @@ function MovieCard({ movie, size }) {
 				<img
 					className={`${imageSizeClass} object-cover rounded-md shadow-lg mb-2`}
 					src={`https://image.tmdb.org/t/p/w500${
-						movie.poster_path === undefined
-							? movie.posterUrl
-							: movie.poster_path
+						movie.poster_path ?? movie.posterUrl
 					}`}
 				/>
 			</li>

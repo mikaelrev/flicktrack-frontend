@@ -11,7 +11,7 @@ function Homepage({ movies }) {
 		</div>
 	) : (
 		<div className="flex flex-col items-center justify-center">
-			<h1 className="text-5xl font-extrabold dark:text-white mb-5 text-center">
+			<h1 className="text-5xl font-extrabold text-white mb-5 text-center">
 				Track and discover your favorite movies with FlickTrack
 			</h1>
 			<NavLink
