@@ -202,7 +202,9 @@ function Profile() {
 										alt={comment.movie?.title}
 										className="w-20 h-30"
 									/>
-									<p>{comment.content}</p>
+									<p className="flex-1 p-3 rounded bg-gray-300">
+										{comment.content}
+									</p>
 								</div>
 							</div>
 							<hr className="my-3 border-t border-gray-200 dark:border-gray-700" />
