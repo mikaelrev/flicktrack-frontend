@@ -70,9 +70,9 @@ function AddToListForm({
 
 	return (
 		<div className="fixed inset-0 bg-gray-700/80 flex items-center justify-center">
-			<div className="flex flex-col gap-5 bg-white p-5 rounded-lg w-96">
+			<div className="flex flex-col text-gray-950 gap-5 bg-gray-400 p-5 rounded-lg w-96">
 				{userLists.length === 0 && <p>{`You haven't created any lists`}</p>}
-				{error ? <p className="text-red-500">{error}</p> : null}
+				{error ? <p className="text-red">{error}</p> : null}
 				<label htmlFor="lists" className="text-xl font-bold">
 					Add movie to a list
 				</label>
@@ -83,7 +83,7 @@ function AddToListForm({
 					onChange={(e) => {
 						setSelectedListId(e.target.value);
 					}}
-					className="mb-3 border-1 border-gray-300 rounded p-2"
+					className="mb-3 border-1 bg-gray-300 border-gray-500 rounded p-2"
 				>
 					{userLists.map((list) => (
 						<option key={list._id} value={list._id}>
@@ -97,8 +97,7 @@ function AddToListForm({
 						bgColor="none"
 						textColor="black"
 						borderWidth="border-1"
-						borderColor={"border-gray-400"}
-						radius="rounded"
+						hover={`hover:bg-gray-200 hover:border-gray-200`}
 						py={2}
 						px={3}
 					>
@@ -107,8 +106,8 @@ function AddToListForm({
 					<Button
 						onClick={addToList}
 						radius="rounded"
-						textColor="white"
 						isLoading={isLoading}
+						hover={`hover:bg-gray-800`}
 						py={2}
 						px={3}
 					>

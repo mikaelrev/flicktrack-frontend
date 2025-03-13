@@ -24,7 +24,7 @@ function App() {
 	}, []);
 
 	return (
-		<div className="flex flex-col h-screen justify-between bg-[#040c24]">
+		<div className="flex flex-col min-h-screen justify-between bg-linear-to-b from-stone-950 to-blue-950">
 			<BrowserRouter>
 				<Navbar />
 				<div className="container md:container md:mx-auto mt-5 p-5">

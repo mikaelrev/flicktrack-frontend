@@ -48,12 +48,15 @@ const Signup = () => {
 	};
 
 	return (
-		<div className="flex items-center justify-center min-h-screen bg-gray-100">
-			<div className="bg-white p-8 rounded-lg shadow-md w-96">
+		<div className="flex items-center justify-center min-h-screen">
+			<div className="bg-gray-600 text-white p-8 rounded-lg shadow-md w-96">
 				<h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
-				<form onSubmit={handleSignUp}>
-					<div className="mb-4">
-						<label className="block text-gray-700">Username:</label>
+				<form
+					onSubmit={handleSignUp}
+					className="flex flex-col gap-5 text-gray-100"
+				>
+					<div>
+						<label>Username:</label>
 						<input
 							type="text"
 							value={username}
@@ -62,8 +65,8 @@ const Signup = () => {
 							className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
 						/>
 					</div>
-					<div className="mb-4">
-						<label className="block text-gray-700">Email:</label>
+					<div>
+						<label>Email:</label>
 						<input
 							type="email"
 							value={email}
@@ -72,8 +75,8 @@ const Signup = () => {
 							className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
 						/>
 					</div>
-					<div className="mb-4">
-						<label className="block text-gray-700">Password:</label>
+					<div>
+						<label>Password:</label>
 						<input
 							type="password"
 							value={password}
@@ -82,8 +85,8 @@ const Signup = () => {
 							className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
 						/>
 					</div>
-					<div className="mb-4">
-						<label className="block text-gray-700">Confirm Password:</label>
+					<div>
+						<label>Confirm Password:</label>
 						<input
 							type="password"
 							value={confirmPassword}
@@ -92,10 +95,8 @@ const Signup = () => {
 							className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
 						/>
 					</div>
-					<div className="mb-4">
-						<label className="block text-gray-700">
-							Profile Image URL (optional):
-						</label>
+					<div>
+						<label>Profile Image URL (optional):</label>
 						<input
 							type="text"
 							value={profileImage}
@@ -103,18 +104,16 @@ const Signup = () => {
 							className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
 						/>
 					</div>
-					<div className="mb-4">
-						<label className="block text-gray-700">Bio (optional):</label>
+					<div>
+						<label>Bio (optional):</label>
 						<textarea
 							value={bio}
 							onChange={(e) => setBio(e.target.value)}
 							className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
 						></textarea>
 					</div>
-					<div className="mb-4">
-						<label className="block text-gray-700">
-							Favorite Quote (optional):
-						</label>
+					<div>
+						<label>Favorite Quote (optional):</label>
 						<input
 							type="text"
 							value={quote}
@@ -122,20 +121,19 @@ const Signup = () => {
 							className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
 						/>
 					</div>
-					<div className="flex-shrink-0">
-						<Button
-							type="submit"
-							isLoading={loading}
-							bgColor={"#2b7fff"}
-							py={2}
-							px={3}
-						>
-							{loading ? "Signing up..." : "Sign Up"}
-						</Button>
-					</div>
+					<Button
+						type="submit"
+						isLoading={loading}
+						bgColor={`bg-blue-600`}
+						hover={`hover:bg-blue-500`}
+						py={2}
+						px={3}
+					>
+						{loading ? "Signing up..." : "Sign Up"}
+					</Button>
 					{error && <p className="mt-2 text-red-500">{error}</p>}
 				</form>
-				<p className="mt-4 text-center">
+				<p className="mt-4 text-center text-gray-300">
 					Already a user?{" "}
 					<a
 						href="/login"
@@ -143,7 +141,7 @@ const Signup = () => {
 							e.preventDefault();
 							navigate("/login");
 						}}
-						className="text-blue-600 hover:underline"
+						className="text-white hover:underline"
 					>
 						Login now
 					</a>

@@ -146,21 +146,19 @@ function MovieDetails() {
 						alt={movie.title}
 					/>
 
-					<div className="flex flex-col justify-between">
-						<h1 className="text-4xl font-bold mb-4">{movie.title}</h1>
-						<p className="text-lg text-gray-600 mb-2">{movie.releaseYear}</p>
-						<p className="text-lg text-gray-600 mb-4">
-							{movie.runtime} minutes
-						</p>
-						<p className="text-lg text-gray-600 mb-2">
+					<div className="flex flex-col justify-between text-gray-300 gap-3">
+						<h1 className="text-4xl font-bold text-white">{movie.title}</h1>
+						<p className="text-lg">{movie.releaseYear}</p>
+						<p className="text-lg">{movie.runtime} minutes</p>
+						<p className="text-lg">
 							<span className="font-semibold">Directed by:</span>{" "}
 							{movie.directedBy}
 						</p>
-						<p className="text-lg text-gray-600 mb-4">
+						<p className="text-lg">
 							<span className="font-semibold">Genres:</span>{" "}
 							{movie.genre.join(", ")}
 						</p>
-						<p className="text-lg text-gray-600">
+						<p className="text-lg">
 							<span className="font-semibold">Cast:</span>{" "}
 							{movie.actors.join(", ")}
 						</p>
@@ -180,7 +178,6 @@ function MovieDetails() {
 					<Button
 						py={2}
 						px={3}
-						bgColor="cyan"
 						isLoading={isLoading}
 						onClick={
 							!isFavorite ? addMovieToFavorites : removeMovieFromFavorites
@@ -192,12 +189,7 @@ function MovieDetails() {
 							? "Remove from Favorites"
 							: "Add to Favorites"}
 					</Button>
-					<Button
-						py={2}
-						px={3}
-						bgColor="tomato"
-						onClick={() => setIsListModalOpen(true)}
-					>
+					<Button py={2} px={3} onClick={() => setIsListModalOpen(true)}>
 						Add to a list
 					</Button>
 				</div>

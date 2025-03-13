@@ -36,9 +36,9 @@ function AddCommentForm({ movieId, onCommentAdded }) {
 	};
 
 	return (
-		<div className="mt-5">
+		<div className="mt-5 text-white">
 			<h2 className="text-xl font-bold mb-2">Add a Comment</h2>
-			<form onSubmit={handleSubmit} className="flex flex-col gap-2">
+			<form onSubmit={handleSubmit} className="flex flex-col gap-2 text-white">
 				<input
 					type="text"
 					value={comment}
@@ -50,8 +50,8 @@ function AddCommentForm({ movieId, onCommentAdded }) {
 				<Button
 					type={"submit"}
 					isLoading={isLoading}
-					bgColor="#2b7fff"
-					textColor="white"
+					bgColor={`bg-blue-600`}
+					hover={`hover:bg-blue-500`}
 				>
 					{isLoading ? "Posting..." : "Post Comment"}
 				</Button>

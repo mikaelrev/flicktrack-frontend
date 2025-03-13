@@ -8,7 +8,7 @@ function ActivityItem({ activity }) {
 		case "checked":
 		case "favorite":
 			message = targetMovie ? (
-				<>
+				<div className="flex gap-2 text-gray-300">
 					<ActivityLink to={`/profile/${user._id}`}>
 						{user.username}
 					</ActivityLink>{" "}
@@ -20,7 +20,7 @@ function ActivityItem({ activity }) {
 					<ActivityLink to={`/profile/${user._id}/${type}movies`}>
 						{type}
 					</ActivityLink>
-				</>
+				</div>
 			) : (
 				<>
 					<ActivityLink to={`/profile/${user._id}`}>
@@ -33,7 +33,7 @@ function ActivityItem({ activity }) {
 		case "added_to_list":
 			message =
 				targetMovie && targetList ? (
-					<>
+					<div className="flex gap-2 text-gray-300">
 						<ActivityLink to={`/profile/${user._id}`}>
 							{user.username}
 						</ActivityLink>{" "}
@@ -45,19 +45,19 @@ function ActivityItem({ activity }) {
 						<ActivityLink to={`/lists/${targetList._id}`}>
 							{targetList.name}
 						</ActivityLink>
-					</>
+					</div>
 				) : (
-					<>
+					<div className="flex gap-2 text-gray-300">
 						<ActivityLink to={`/profile/${user._id}`}>
 							{user.username}
 						</ActivityLink>{" "}
 						added a movie to a list
-					</>
+					</div>
 				);
 			break;
 		case "created_list":
 			message = targetList ? (
-				<>
+				<div className="flex gap-2 text-gray-300">
 					<ActivityLink to={`/profile/${user._id}`}>
 						{user.username}
 					</ActivityLink>{" "}
@@ -65,7 +65,7 @@ function ActivityItem({ activity }) {
 					<ActivityLink to={`/lists/${targetList._id}`}>
 						{targetList.name}
 					</ActivityLink>
-				</>
+				</div>
 			) : (
 				<>
 					<ActivityLink to={`/profile/${user._id}`}>
@@ -78,33 +78,32 @@ function ActivityItem({ activity }) {
 		case "commented":
 			message =
 				targetMovie && comment ? (
-					<div className="flex flex-col">
-						<div className="flex-1 mb-2">
+					<div className="flex flex-col text-white">
+						<div className="flex gap-2 flex-1 mb-2">
 							<ActivityLink to={`/profile/${user._id}`}>
 								{user.username}
 							</ActivityLink>{" "}
-							commented on{" "}
+							<p className="text-gray-300">commented on:</p>
 							<ActivityLink to={`/movies/${targetMovie._id}`}>
 								{targetMovie.title}
 							</ActivityLink>
-							:
 						</div>
-						<q className="p-3 bg-gray-300">{comment.content}</q>
+						<q className="p-3 bg-gray-500 rounded">{comment.content}</q>
 					</div>
 				) : comment ? (
-					<>
+					<div className="flex">
 						<ActivityLink to={`/profile/${user._id}`}>
 							{user.username}
 						</ActivityLink>{" "}
 						left a comment: <q>{comment.content}</q>
-					</>
+					</div>
 				) : (
-					<>
+					<div className="flex gap-2 text-gray-300">
 						<ActivityLink to={`/profile/${user._id}`}>
 							{user.username}
 						</ActivityLink>{" "}
 						left a comment
-					</>
+					</div>
 				);
 			break;
 		default:

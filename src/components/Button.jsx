@@ -7,18 +7,19 @@ function Button({
 	borderWidth,
 	borderColor,
 	borderStyle,
-	bgColor = "red",
+	bgColor = "bg-gray-600",
 	textColor = "text-white",
 	py = 5,
 	px = 5,
+	cursor = "cursor-pointer",
+	hover = "hover:bg-gray-500",
 }) {
 	return (
 		<button
 			type={type}
 			disabled={isLoading}
 			onClick={onClick}
-			style={{ backgroundColor: bgColor }}
-			className={`${textColor} py-${py} px-${px} ${borderRadius} ${borderWidth} ${borderColor} border-${borderStyle}`}
+			className={`${textColor} py-${py} px-${px} ${borderRadius} ${borderWidth} ${borderColor} border-${borderStyle} ${cursor} ${bgColor} ${hover}`}
 		>
 			{children}
 		</button>

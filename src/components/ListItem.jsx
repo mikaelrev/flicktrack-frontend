@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 
 function ListItem({ list }) {
 	return (
-		<li className="flex flex-col">
+		<li className="flex flex-col p-2 rounded">
 			<Link to={`/lists/${list._id}`} key={list._id}>
 				<div className="flex justify-between">
 					<div>
-						<h3 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+						<h3 className="text-2xl font-bold tracking-tight text-white">
 							{list.name}
 						</h3>
-						<p>{`Movies: ${list.movies.length}`}</p>
+						<p className="text-gray-100">{`Movies: ${list.movies.length}`}</p>
 					</div>
 				</div>
 			</Link>
@@ -31,7 +31,7 @@ function ListItem({ list }) {
 								}
 								alt={`${list.owner.username}'s profile picture`}
 							/>
-							<p className="text-blue-500">{list.owner.username}</p>
+							<p className="text-white">{list.owner.username}</p>
 						</Link>
 					</div>
 				)}

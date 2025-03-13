@@ -40,12 +40,15 @@ const Login = () => {
 	};
 
 	return (
-		<div className="flex items-center justify-center min-h-screen bg-gray-100">
-			<div className="bg-white p-8 rounded-lg shadow-md w-96">
+		<div className="flex items-center justify-center min-h-screen">
+			<div className="bg-gray-600 text-gray-100 p-8 rounded-lg shadow-md w-96">
 				<h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-				<form onSubmit={handleLogin}>
-					<div className="mb-4">
-						<label className="block text-gray-700">Email:</label>
+				<form
+					onSubmit={handleLogin}
+					className="flex flex-col gap-5 text-gray-100"
+				>
+					<div>
+						<label>Email:</label>
 						<input
 							type="email"
 							value={email}
@@ -54,8 +57,8 @@ const Login = () => {
 							className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
 						/>
 					</div>
-					<div className="mb-6">
-						<label className="block text-gray-700">Password:</label>
+					<div>
+						<label>Password:</label>
 						<input
 							type="password"
 							value={password}
@@ -64,20 +67,19 @@ const Login = () => {
 							className="mt-1 block w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
 						/>
 					</div>
-					<div className="flex-shrink-0">
-						<Button
-							type="submit"
-							isLoading={loading}
-							bgColor={"#2b7fff"}
-							py={2}
-							px={3}
-						>
-							{loading ? "Logging in..." : "Login"}
-						</Button>
-					</div>
+					<Button
+						type="submit"
+						isLoading={loading}
+						bgColor={`bg-blue-600`}
+						hover={`hover:bg-blue-500`}
+						py={2}
+						px={3}
+					>
+						{loading ? "Logging in..." : "Login"}
+					</Button>
 					{error && <p className="mt-2 text-red-500">{error}</p>}
 				</form>
-				<p className="mt-4 text-center">
+				<p className="mt-4 text-center text-gray-300">
 					Not a user?{" "}
 					<a
 						href="/signup"
@@ -85,7 +87,7 @@ const Login = () => {
 							e.preventDefault();
 							navigate("/signup");
 						}}
-						className="text-blue-600 hover:underline"
+						className="text-white hover:underline"
 					>
 						Sign up now
 					</a>

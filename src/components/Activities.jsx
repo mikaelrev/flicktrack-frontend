@@ -27,7 +27,7 @@ function Activities() {
 			<h1 className="text-5xl font-extrabold dark:text-white mb-5">Home</h1>
 			{activities.map((activity) => {
 				return (
-					<div key={activity._id} className="bg-gray-200 p-3 rounded">
+					<div key={activity._id} className="bg-gray-600 p-3 rounded">
 						<ActivityItem activity={activity} />
 					</div>
 				);

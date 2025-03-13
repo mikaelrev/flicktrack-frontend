@@ -17,7 +17,7 @@ function MovieCard({ movie, size }) {
 					}`}
 				/>
 			</li>
-			<h3 className="text-xl font-bold tracking-tight text-gray-700 dark:text-white">
+			<h3 className="text-xl font-bold tracking-tight text-white">
 				{movie.title}
 			</h3>
 		</Link>

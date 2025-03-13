@@ -5,7 +5,7 @@ function CommentItem({ comment, onHandleDelete, userId }) {
 	if (!comment.user) return null;
 
 	return (
-		<div className="flex items-center bg-gray-200 p-5 gap-3 rounded">
+		<div className="flex items-center bg-gray-600 text-gray-300 p-5 gap-3 rounded">
 			<Link to={`/profile/${comment.user._id}`}>
 				<img
 					src={
@@ -19,15 +19,18 @@ function CommentItem({ comment, onHandleDelete, userId }) {
 			</Link>
 			<div className="flex justify-between flex-1">
 				<div className="flex flex-col">
-					<Link to={`/profile/${comment.user._id}`} className="text-blue-500">
-						<p className="text-sm text-blue-500">{comment.user.username}</p>
+					<Link
+						to={`/profile/${comment.user._id}`}
+						className="text-white hover:text-gray-300"
+					>
+						{comment.user.username}
 					</Link>
 					<p>{comment.content}</p>
 				</div>
 				{userId !== comment.user._id ? null : (
 					<Button
-						bgColor={"#d11a2a"}
-						textColor={"white"}
+						bgColor={`bg-gray-500`}
+						textColor={`text-gray-100`}
 						py={2}
 						px={3}
 						onClick={() => onHandleDelete(comment._id)}

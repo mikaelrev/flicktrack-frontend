@@ -31,7 +31,7 @@ function Movies() {
 
 	return (
 		<div>
-			<h1 className="text-5xl font-extrabold dark:text-white mb-5">Movies</h1>
+			<h1 className="text-5xl font-extrabold text-white mb-5">Movies</h1>
 			<ul className="grid grid-cols-5 gap-5">
 				{movies.map((movie) => (
 					<MovieCard movie={movie} key={movie.id} />

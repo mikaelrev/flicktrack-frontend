@@ -16,7 +16,7 @@ function Homepage({ movies }) {
 			</h1>
 			<NavLink
 				to="/signup"
-				className="bg-[#d9674e] text-white font-bold py-2 px-6 rounded text-lg hover:bg-[#b4563d] mb-5"
+				className="bg-gray-600 text-gray-100 font-bold py-2 px-6 rounded text-lg hover:bg-gray-500 mb-5"
 			>
 				Sign up for free
 			</NavLink>

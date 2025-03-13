@@ -58,25 +58,25 @@ function List() {
 				<p>Loading...</p>
 			) : list.movies.length === 0 ? (
 				<div>
-					<h1 className="text-5xl font-extrabold dark:text-white mb-5">
-						Lists
+					<h1 className="text-5xl font-extrabold text-white mb-5">
+						{list.name}
 					</h1>
-					<p>The list is empty</p>
+					<p className="text-white">The list is empty</p>
 				</div>
 			) : (
 				<div>
-					<h1 className="text-5xl font-extrabold dark:text-white mb-5">
+					<h1 className="text-5xl font-extrabold text-white mb-5">
 						{list.name}
 					</h1>
 					<ul className="flex flex-col gap-3">
 						{list.movies.map((movie) => (
 							<div
 								key={movie._id}
-								className="flex items-center justify-between p-5 bg-gray-300 w-full"
+								className="flex items-center justify-between p-5 bg-gray-600 w-full rounded"
 							>
 								<MovieCard movie={movie} size="extra-small" />
 								<Button
-									bgColor={"#d11a2a"}
+									bgColor={`bg-gray-500`}
 									py={2}
 									px={3}
 									isLoading={isLoading}

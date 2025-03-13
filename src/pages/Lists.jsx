@@ -59,7 +59,7 @@ function Lists() {
 
 	return (
 		<div>
-			<h1 className="text-5xl font-extrabold dark:text-white mb-5">Lists</h1>
+			<h1 className="text-5xl font-extrabold text-white mb-5">Lists</h1>
 			<Button
 				py={2}
 				px={3}
@@ -77,7 +77,7 @@ function Lists() {
 					: lists.map((list) =>
 							list ? (
 								<div
-									className="flex items-center justify-between bg-gray-300 rounded p-5"
+									className="flex items-center justify-between bg-gray-600 rounded p-5"
 									key={list._id}
 								>
 									<ListItem list={list} />

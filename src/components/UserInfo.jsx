@@ -1,7 +1,7 @@
 function UserInfo({ user }) {
 	return (
 		<div className="w-full flex flex-col">
-			<h1 className="text-3xl font-extrabold text-gray-700 mb-4">
+			<h1 className="text-3xl font-extrabold text-white mb-4">
 				{user.username}
 			</h1>
 			{user.profileImage === null ? (
@@ -17,14 +17,30 @@ function UserInfo({ user }) {
 					alt={user.username}
 				/>
 			)}
-			<p className="text-gray-700 mb-4">Bio: {user.bio}</p>
-			<p className="text-gray-700 mb-4">Quote: {user.quote}</p>
-			<p className="text-gray-700 mb-4">Checks: {user.checkedMovies.length}</p>
-			<p className="text-gray-700 mb-4">
-				Favorites: {user.favoriteMovies.length}
-			</p>
-			<p className="text-gray-700 mb-4">Followers: {user.followers.length}</p>
-			<p className="text-gray-700 mb-4">Following: {user.following.length}</p>
+			<div className="flex flex-col gap-3 text-gray-100">
+				<p>
+					Bio: <span className="text-gray-300">{user.bio}</span>
+				</p>
+				<p>
+					Quote: <span className="text-gray-300">{user.quote}</span>
+				</p>
+				<p>
+					Checks:{" "}
+					<span className="text-gray-300">{user.checkedMovies.length}</span>
+				</p>
+				<p>
+					Favorites:{" "}
+					<span className="text-gray-300">{user.favoriteMovies.length}</span>
+				</p>
+				<p>
+					Followers:{" "}
+					<span className="text-gray-300">{user.followers.length}</span>
+				</p>
+				<p>
+					Following:{" "}
+					<span className="text-gray-300">{user.following.length}</span>
+				</p>
+			</div>
 		</div>
 	);
 }

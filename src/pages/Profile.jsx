@@ -115,10 +115,8 @@ function Profile() {
 				{activeUser !== user._id && (
 					<Button
 						onClick={isFollowing ? handleUnfollowUser : handleFollowUser}
-						borderWidth={isFollowing ? "border" : ""}
-						borderColor={isFollowing ? "border-gray-500" : ""}
-						bgColor={isFollowing ? "" : "#2b7fff"}
-						textColor={isFollowing && "text-gray-700"}
+						bgColor={`bg-gray-600`}
+						textColor={isFollowing && "text-gray-100"}
 						py={2}
 						px={3}
 					>
@@ -127,10 +125,10 @@ function Profile() {
 				)}
 			</div>
 
-			<hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+			<hr className="h-px my-8 bg-gray-500 border-0"></hr>
 			<div className="flex justify-between gap-1">
-				<div className="bg-gray-100 p-3 rounded mb-4 flex-1">
-					<h2 className="text-3xl font-extrabold text-gray-700">
+				<div className="bg-gray-600 p-3 rounded mb-4 flex-1">
+					<h2 className="text-3xl font-extrabold text-white">
 						Checked movies:
 					</h2>
 					<div className="flex flex-col">
@@ -142,14 +140,14 @@ function Profile() {
 					{checkedMovies.length > 3 && (
 						<Link
 							to={`/profile/${user._id}/checkedmovies`}
-							className="text-blue-500 mt-3 inline-block hover:underline"
+							className="text-white mt-3 inline-block hover:underline"
 						>
 							View All Checked Movies →
 						</Link>
 					)}
 				</div>
-				<div className="bg-gray-100 p-3 rounded mb-4 flex-1">
-					<h2 className="text-3xl font-extrabold text-gray-700">
+				<div className="bg-gray-600 p-3 rounded mb-4 flex-1">
+					<h2 className="text-3xl font-extrabold text-white">
 						Favorite movies:
 					</h2>
 					<div className="flex flex-col">
@@ -161,7 +159,7 @@ function Profile() {
 					{favoriteMovies.length > 3 && (
 						<Link
 							to={`/profile/${user._id}/favoritemovies`}
-							className="text-blue-500 mt-3 inline-block hover:underline"
+							className="text-white mt-3 inline-block hover:underline"
 						>
 							View All Favorite Movies →
 						</Link>
@@ -169,8 +167,8 @@ function Profile() {
 				</div>
 			</div>
 
-			<div className="bg-gray-100 p-3 rounded">
-				<h2 className="text-3xl font-extrabold text-gray-700">Lists:</h2>
+			<div className="bg-gray-600 p-3 rounded">
+				<h2 className="text-3xl font-extrabold text-white">Lists:</h2>
 				{user.lists.length === 0
 					? "No lists found"
 					: user.lists.map((list) => (
@@ -179,8 +177,8 @@ function Profile() {
 							</div>
 					  ))}
 			</div>
-			<div className="flex flex-col gap-5 bg-gray-100 p-3 rounded-md mt-5">
-				<h2 className="text-3xl font-extrabold text-gray-700">Comments:</h2>
+			<div className="flex flex-col gap-5 bg-gray-600 p-3 rounded-md mt-5 text-gray-300">
+				<h2 className="text-3xl font-extrabold text-white">Comments:</h2>
 				{user.comments.length === 0 ? (
 					<p>No comments yet.</p>
 				) : (
@@ -191,7 +189,7 @@ function Profile() {
 									Movie comment on{" "}
 									<Link
 										to={`/movies/${comment.movie.tmdbId}`}
-										className="text-blue-500"
+										className="text-white"
 									>
 										{comment.movie?.title}
 									</Link>
@@ -202,12 +200,10 @@ function Profile() {
 										alt={comment.movie?.title}
 										className="w-20 h-30"
 									/>
-									<p className="flex-1 p-3 rounded bg-gray-300">
-										{comment.content}
-									</p>
+									<p className="flex-1 text-gray-100">{comment.content}</p>
 								</div>
 							</div>
-							<hr className="my-3 border-t border-gray-200 dark:border-gray-700" />
+							<hr className="my-3 border-t border-gray-500" />
 						</div>
 					))
 				)}
