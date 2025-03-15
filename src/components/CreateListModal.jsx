@@ -41,6 +41,12 @@ function CreateListModal({ isOpen, onClose, onListCreated }) {
 		setIsLoading(false);
 	};
 
+	const handleKeyDown = (e) => {
+		if (e.key === "Enter") {
+			createNewList();
+		}
+	};
+
 	if (!isOpen) return null;
 
 	return (
@@ -54,6 +60,7 @@ function CreateListModal({ isOpen, onClose, onListCreated }) {
 					className="border border-gray-500 p-2 w-full mb-3 rounded-sm"
 					value={newListName}
 					onChange={(e) => setNewListName(e.target.value)}
+					onKeyDown={handleKeyDown}
 				/>
 				<div className="flex justify-end gap-2">
 					<Button
