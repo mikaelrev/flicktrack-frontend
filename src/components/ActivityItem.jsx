@@ -67,12 +67,12 @@ function ActivityItem({ activity }) {
 					</ActivityLink>
 				</div>
 			) : (
-				<>
+				<div className="flex gap-2 text-gray-300">
 					<ActivityLink to={`/profile/${user._id}`}>
 						{user.username}
 					</ActivityLink>{" "}
 					created a new list
-				</>
+				</div>
 			);
 			break;
 		case "commented":
