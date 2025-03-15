@@ -21,7 +21,6 @@ function List() {
 					`http://localhost:3000/lists/${listId}`
 				);
 				setList(response.data.list);
-				console.log(response.data.list);
 			} catch (error) {
 				console.error("Error fetching list:", error);
 			}

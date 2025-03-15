@@ -18,7 +18,6 @@ function Lists() {
 			const response = await fetch("http://localhost:3000/lists");
 			const data = await response.json();
 			setLists(data.lists);
-			console.log(data.lists);
 		} catch (error) {
 			console.error("Error fetching lists:", error);
 		}
