@@ -10,6 +10,7 @@ function List() {
 	const [list, setList] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [notificationMessage, setNotificationMessage] = useState("");
+	const [error, setError] = useState("");
 
 	const token = localStorage.getItem("token");
 	const userId = localStorage.getItem("userId");
@@ -23,6 +24,7 @@ function List() {
 				setList(response.data.list);
 			} catch (error) {
 				console.error("Error fetching list:", error);
+				setError(error.response?.data?.message || "Failed to fetch list.");
 			}
 		};
 
@@ -49,6 +51,9 @@ function List() {
 			setNotificationMessage("Removed from list");
 		} catch (error) {
 			console.error("Error removing movie from list:", error);
+			setError(
+				error.response?.data?.message || "Failed to remove movie from list"
+			);
 		}
 		setIsLoading(false);
 	};
@@ -70,6 +75,7 @@ function List() {
 						{list.name}
 					</h1>
 					<ul className="flex flex-col gap-3">
+						{error ? <p className="text-red-600">{error}</p> : null}
 						{list.movies.map((movie) => (
 							<div
 								key={movie._id}
