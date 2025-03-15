@@ -70,7 +70,8 @@ function CreateListModal({ isOpen, onClose, onListCreated }) {
 					<Button
 						py={1}
 						px={3}
-						bgColor={"#2b7fff"}
+						bgColor={`bg-blue-500`}
+						hover={`hover:bg-blue-400`}
 						onClick={createNewList}
 						disabled={isLoading}
 					>

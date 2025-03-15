@@ -12,6 +12,7 @@ function List() {
 	const [notificationMessage, setNotificationMessage] = useState("");
 
 	const token = localStorage.getItem("token");
+	const userId = localStorage.getItem("userId");
 
 	useEffect(() => {
 		const fetchList = async () => {
@@ -20,6 +21,7 @@ function List() {
 					`http://localhost:3000/lists/${listId}`
 				);
 				setList(response.data.list);
+				console.log(response.data.list);
 			} catch (error) {
 				console.error("Error fetching list:", error);
 			}
@@ -75,15 +77,17 @@ function List() {
 								className="flex flex-col md:flex-row gap-2 md:gap-0 md:items-center justify-between p-5 bg-gray-600 w-full rounded"
 							>
 								<MovieCard movie={movie} size="extra-small" />
-								<Button
-									bgColor={`bg-gray-500`}
-									py={2}
-									px={3}
-									isLoading={isLoading}
-									onClick={() => removeMovieFromList(movie)}
-								>
-									Remove from list
-								</Button>
+								{userId === list.owner._id ? (
+									<Button
+										bgColor={`bg-gray-500`}
+										py={2}
+										px={3}
+										isLoading={isLoading}
+										onClick={() => removeMovieFromList(movie)}
+									>
+										Remove from list
+									</Button>
+								) : null}
 							</div>
 						))}
 					</ul>

@@ -24,7 +24,7 @@ function Activities() {
 
 	return (
 		<div className="flex flex-col gap-3">
-			<h1 className="text-5xl font-extrabold dark:text-white mb-5">Home</h1>
+			<h1 className="text-5xl font-extrabold text-white mb-5">Home</h1>
 			{activities.map((activity) => {
 				return (
 					<div key={activity._id} className="bg-gray-600 p-3 rounded">

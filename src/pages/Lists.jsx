@@ -11,12 +11,14 @@ function Lists() {
 	const [error, setError] = useState("");
 
 	const token = localStorage.getItem("token");
+	const userId = localStorage.getItem("userId");
 
 	const fetchLists = async () => {
 		try {
 			const response = await fetch("http://localhost:3000/lists");
 			const data = await response.json();
 			setLists(data.lists);
+			console.log(data.lists);
 		} catch (error) {
 			console.error("Error fetching lists:", error);
 		}
@@ -83,14 +85,16 @@ function Lists() {
 								>
 									<ListItem list={list} />
 									<div className="flex-shrink-0">
-										<Button
-											bgColor={`bg-red-600`}
-											py={2}
-											px={3}
-											onClick={() => handleDeleteList(list._id)}
-										>
-											Delete list
-										</Button>
+										{userId === list.owner._id ? (
+											<Button
+												bgColor={`bg-red-600`}
+												py={2}
+												px={3}
+												onClick={() => handleDeleteList(list._id)}
+											>
+												Delete list
+											</Button>
+										) : null}
 									</div>
 								</div>
 							) : null
