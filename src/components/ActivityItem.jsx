@@ -84,7 +84,7 @@ function ActivityItem({ activity }) {
 								{user.username}
 							</ActivityLink>{" "}
 							<p className="text-gray-300">commented on:</p>
-							<ActivityLink to={`/movies/${targetMovie._id}`}>
+							<ActivityLink to={`/movies/${targetMovie.tmdbId}`}>
 								{targetMovie.title}
 							</ActivityLink>
 						</div>

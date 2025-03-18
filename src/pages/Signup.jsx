@@ -126,8 +126,6 @@ const Signup = () => {
 						isLoading={loading}
 						bgColor={`bg-blue-600`}
 						hover={`hover:bg-blue-500`}
-						py={2}
-						px={3}
 					>
 						{loading ? "Signing up..." : "Sign Up"}
 					</Button>

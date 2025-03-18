@@ -62,8 +62,8 @@ function Lists() {
 		<div>
 			<h1 className="text-5xl font-extrabold text-white mb-5">Lists</h1>
 			<Button
-				py={2}
-				px={3}
+				py={`py-2`}
+				px={`px-3`}
 				bgColor={`bg-blue-500`}
 				hover={`hover:bg-blue-400`}
 				onClick={() => setIsModalOpen(true)}
@@ -87,8 +87,6 @@ function Lists() {
 										{userId === list.owner._id ? (
 											<Button
 												bgColor={`bg-red-600`}
-												py={2}
-												px={3}
 												onClick={() => handleDeleteList(list._id)}
 											>
 												Delete list

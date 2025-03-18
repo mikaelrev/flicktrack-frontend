@@ -117,8 +117,6 @@ function Profile() {
 						onClick={isFollowing ? handleUnfollowUser : handleFollowUser}
 						bgColor={`bg-gray-600`}
 						textColor={isFollowing && "text-gray-100"}
-						py={2}
-						px={3}
 					>
 						{isFollowing ? "Unfollow" : "Follow"}
 					</Button>

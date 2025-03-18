@@ -98,8 +98,6 @@ function AddToListForm({
 						textColor="black"
 						borderWidth="border-1"
 						hover={`hover:bg-gray-200 hover:border-gray-200`}
-						py={2}
-						px={3}
 					>
 						Cancel
 					</Button>

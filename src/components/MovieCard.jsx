@@ -6,6 +6,8 @@ function MovieCard({ movie, size }) {
 	const imageSizeClass = size === "extra-small" ? "w-16 h-24" : "w-full h-auto";
 	const posterUrl = movie.poster_path
 		? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+		: movie.posterUrl
+		? movie.posterUrl
 		: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='750' viewBox='0 0 500 750'%3E%3Crect width='500' height='750' fill='%23cccccc'/%3E%3Ctext x='50%' y='50%' font-size='20' text-anchor='middle' fill='%23ffffff'%3ENo+Image%3C/text%3E%3C/svg%3E";
 
 	return (

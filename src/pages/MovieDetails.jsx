@@ -165,8 +165,6 @@ function MovieDetails() {
 					</div>
 					<Button
 						onClick={!isChecked ? addMovieToChecked : removeMovieFromChecked}
-						py={2}
-						px={3}
 						isLoading={isLoading}
 					>
 						{isLoading
@@ -176,8 +174,6 @@ function MovieDetails() {
 							: "Check movie"}
 					</Button>
 					<Button
-						py={2}
-						px={3}
 						isLoading={isLoading}
 						onClick={
 							!isFavorite ? addMovieToFavorites : removeMovieFromFavorites
@@ -189,7 +185,7 @@ function MovieDetails() {
 							? "Remove from Favorites"
 							: "Add to Favorites"}
 					</Button>
-					<Button py={2} px={3} onClick={() => setIsListModalOpen(true)}>
+					<Button onClick={() => setIsListModalOpen(true)}>
 						Add to a list
 					</Button>
 				</div>

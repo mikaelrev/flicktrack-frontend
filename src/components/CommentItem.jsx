@@ -30,9 +30,7 @@ function CommentItem({ comment, onHandleDelete, userId }) {
 				{userId !== comment.user._id ? null : (
 					<Button
 						bgColor={`bg-gray-500`}
-						textColor={`text-gray-100`}
-						py={2}
-						px={3}
+						hover={`hover:bg-gray-400 hover:text-black`}
 						onClick={() => onHandleDelete(comment._id)}
 					>
 						Delete comment

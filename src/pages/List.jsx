@@ -85,8 +85,6 @@ function List() {
 								{userId === list.owner._id ? (
 									<Button
 										bgColor={`bg-gray-500`}
-										py={2}
-										px={3}
 										isLoading={isLoading}
 										onClick={() => removeMovieFromList(movie)}
 									>

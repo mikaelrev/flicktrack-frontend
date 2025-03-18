@@ -68,15 +68,11 @@ function CreateListModal({ isOpen, onClose, onListCreated }) {
 						textColor="black"
 						borderWidth="border"
 						borderColor={"border-gray-400"}
-						py={2}
-						px={3}
 						onClick={onClose}
 					>
 						Cancel
 					</Button>
 					<Button
-						py={1}
-						px={3}
 						bgColor={`bg-blue-500`}
 						hover={`hover:bg-blue-400`}
 						onClick={createNewList}

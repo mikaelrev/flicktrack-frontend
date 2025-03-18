@@ -23,13 +23,15 @@ function FavoriteMovies() {
 	}, [userId]);
 
 	return (
-		<div className="flex flex-col bg-gray-100 p-5 rounded">
-			<h1 className="text-5xl font-extrabold dark:text-white mb-5">
+		<div className="flex flex-col p-5 rounded">
+			<h1 className="text-5xl font-extrabold text-white mb-5">
 				All favorite movies:
 			</h1>
-			{favoriteMovies.map((movie) => {
-				return <FavoriteMovieItem movie={movie} key={movie._id} />;
-			})}
+			<div className="bg-gray-600 p-3 rounded">
+				{favoriteMovies.map((movie) => {
+					return <FavoriteMovieItem movie={movie} key={movie._id} />;
+				})}
+			</div>
 		</div>
 	);
 }
