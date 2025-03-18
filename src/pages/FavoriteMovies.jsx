@@ -11,7 +11,7 @@ function FavoriteMovies() {
 		const fetchFavoriteMovies = async () => {
 			try {
 				const favoriteMoviesResponse = await axios.get(
-					`http://localhost:3000/users/${userId}/favorites`
+					`https://flicktrack-backend.onrender.com/users/${userId}/favorites`
 				);
 				setFavoriteMovies(favoriteMoviesResponse.data.favoriteMovies);
 				console.log(favoriteMoviesResponse.data.favoriteMovies);

@@ -26,12 +26,12 @@ function MovieDetails() {
 	const fetchMovie = useCallback(async () => {
 		try {
 			const movieResponse = await axios.get(
-				`http://localhost:3000/movies/${movieId}`
+				`https://flicktrack-backend.onrender.com/movies/${movieId}`
 			);
 			setMovie(movieResponse.data);
 
 			const userCheckedResponse = await axios.get(
-				`http://localhost:3000/users/${userId}/checked`
+				`https://flicktrack-backend.onrender.com/users/${userId}/checked`
 			);
 			const userCheckedMovies = userCheckedResponse.data.checkedMovies;
 
@@ -42,7 +42,7 @@ function MovieDetails() {
 			);
 
 			const userFavoritesResponse = await axios.get(
-				`http://localhost:3000/users/${userId}/favorites`
+				`https://flicktrack-backend.onrender.com/users/${userId}/favorites`
 			);
 
 			const userFavoriteMovies = userFavoritesResponse.data.favoriteMovies;
@@ -65,7 +65,7 @@ function MovieDetails() {
 		setIsLoading(true);
 		try {
 			await axios.post(
-				`http://localhost:3000/users/movies/${movie._id}/checked`,
+				`https://flicktrack-backend.onrender.com/users/movies/${movie._id}/checked`,
 				{},
 				config
 			);
@@ -81,7 +81,7 @@ function MovieDetails() {
 		setIsLoading(true);
 		try {
 			await axios.delete(
-				`http://localhost:3000/users/movies/${movie._id}/checked`,
+				`https://flicktrack-backend.onrender.com/users/movies/${movie._id}/checked`,
 				config
 			);
 			setIsChecked(false);
@@ -96,7 +96,7 @@ function MovieDetails() {
 		setIsLoading(true);
 		try {
 			await axios.post(
-				`http://localhost:3000/users/movies/${movie._id}/favorites`,
+				`https://flicktrack-backend.onrender.com/users/movies/${movie._id}/favorites`,
 				{},
 				config
 			);
@@ -112,7 +112,7 @@ function MovieDetails() {
 		setIsLoading(true);
 		try {
 			await axios.delete(
-				`http://localhost:3000/users/movies/${movie._id}/favorites`,
+				`https://flicktrack-backend.onrender.com/users/movies/${movie._id}/favorites`,
 				config
 			);
 			setIsFavorite(false);
@@ -126,7 +126,10 @@ function MovieDetails() {
 	const handleDeleteComment = async (commentId) => {
 		setIsLoading(true);
 		try {
-			await axios.delete(`http://localhost:3000/comments/${commentId}`, config);
+			await axios.delete(
+				`https://flicktrack-backend.onrender.com/comments/${commentId}`,
+				config
+			);
 			fetchMovie();
 		} catch (error) {
 			console.log(error);

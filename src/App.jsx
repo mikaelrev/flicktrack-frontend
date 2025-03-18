@@ -18,7 +18,7 @@ function App() {
 	const [movies, setMovies] = useState([]);
 
 	useEffect(() => {
-		fetch("http://localhost:3000/movies/popular")
+		fetch("https://flicktrack-backend.onrender.com/movies/popular")
 			.then((response) => response.json())
 			.then((data) => setMovies(data));
 	}, []);

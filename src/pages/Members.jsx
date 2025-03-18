@@ -8,7 +8,9 @@ function Members() {
 	useEffect(() => {
 		const fetchAllMembers = async () => {
 			try {
-				const response = await axios.get("http://localhost:3000/users");
+				const response = await axios.get(
+					"https://flicktrack-backend.onrender.com/users"
+				);
 				setMembers(response.data.users);
 			} catch (error) {
 				console.log(error);

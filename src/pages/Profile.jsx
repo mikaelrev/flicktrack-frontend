@@ -23,7 +23,9 @@ function Profile() {
 	const fetchUser = useCallback(
 		async (userId) => {
 			try {
-				const response = await axios(`http://localhost:3000/users/${userId}`);
+				const response = await axios(
+					`https://flicktrack-backend.onrender.com/users/${userId}`
+				);
 				const fetchedUser = response.data.user;
 				setUser(fetchedUser);
 
@@ -39,7 +41,7 @@ function Profile() {
 	const fetchCheckedMovies = async (userId) => {
 		try {
 			const response = await axios(
-				`http://localhost:3000/users/${userId}/checked`
+				`https://flicktrack-backend.onrender.com/users/${userId}/checked`
 			);
 
 			const checkedResponse = response.data.checkedMovies;
@@ -53,7 +55,7 @@ function Profile() {
 	const fetchFavoriteMovies = async (userId) => {
 		try {
 			const response = await axios(
-				`http://localhost:3000/users/${userId}/favorites`
+				`https://flicktrack-backend.onrender.com/users/${userId}/favorites`
 			);
 
 			const favoritesResponse = response.data.favoriteMovies;
@@ -67,7 +69,7 @@ function Profile() {
 	const handleFollowUser = async () => {
 		try {
 			await axios.post(
-				`http://localhost:3000/users/${userId}/follow`,
+				`https://flicktrack-backend.onrender.com/users/${userId}/follow`,
 				{},
 				config
 			);
@@ -81,7 +83,7 @@ function Profile() {
 	const handleUnfollowUser = async () => {
 		try {
 			await axios.post(
-				`http://localhost:3000/users/${userId}/unfollow`,
+				`https://flicktrack-backend.onrender.com/users/${userId}/unfollow`,
 				{},
 				config
 			);

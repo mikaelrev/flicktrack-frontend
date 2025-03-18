@@ -20,7 +20,7 @@ function AddToListForm({
 
 		try {
 			const response = await axios.get(
-				`http://localhost:3000/users/${userId}/lists`
+				`https://flicktrack-backend.onrender.com/users/${userId}/lists`
 			);
 
 			setUserLists(response.data.lists);
@@ -50,7 +50,7 @@ function AddToListForm({
 
 		try {
 			await axios.post(
-				`http://localhost:3000/users/lists/${selectedListId}/movies/${movieId}`,
+				`https://flicktrack-backend.onrender.com/users/lists/${selectedListId}/movies/${movieId}`,
 				{},
 				config
 			);

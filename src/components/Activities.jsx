@@ -13,7 +13,7 @@ function Activities() {
 		setIsLoading(true);
 		try {
 			const response = await axios.get(
-				`http://localhost:3000/activities?page=${currentPage}&limit=10`
+				`https://flicktrack-backend.onrender.com/activities?page=${currentPage}&limit=10`
 			);
 			if (currentPage === 1) {
 				setActivities(response.data.activities);

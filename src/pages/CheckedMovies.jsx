@@ -11,7 +11,7 @@ function CheckedMovies() {
 		const fetchCheckedMovies = async () => {
 			try {
 				const checkedMoviesResponse = await axios.get(
-					`http://localhost:3000/users/${userId}/checked`
+					`https://flicktrack-backend.onrender.com/users/${userId}/checked`
 				);
 				setCheckedMovies(checkedMoviesResponse.data.checkedMovies);
 				console.log(checkedMoviesResponse.data.checkedMovies);

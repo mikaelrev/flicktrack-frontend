@@ -15,7 +15,9 @@ function Lists() {
 
 	const fetchLists = async () => {
 		try {
-			const response = await fetch("http://localhost:3000/lists");
+			const response = await fetch(
+				"https://flicktrack-backend.onrender.com/lists"
+			);
 			const data = await response.json();
 			setLists(data.lists);
 		} catch (error) {
@@ -44,7 +46,10 @@ function Lists() {
 
 		setIsLoading(true);
 		try {
-			await axios.delete(`http://localhost:3000/users/lists/${listId}`, config);
+			await axios.delete(
+				`https://flicktrack-backend.onrender.com/users/lists/${listId}`,
+				config
+			);
 
 			setLists((prevLists) => prevLists.filter((list) => list._id !== listId));
 		} catch (error) {

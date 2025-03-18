@@ -24,18 +24,21 @@ const Signup = () => {
 
 		setLoading(true);
 		try {
-			const response = await fetch("http://localhost:3000/auth/signup", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({
-					username,
-					email,
-					password,
-					profileImage: profileImage || undefined,
-					bio: bio || undefined,
-					quote: quote || undefined,
-				}),
-			});
+			const response = await fetch(
+				"https://flicktrack-backend.onrender.com/auth/signup",
+				{
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						username,
+						email,
+						password,
+						profileImage: profileImage || undefined,
+						bio: bio || undefined,
+						quote: quote || undefined,
+					}),
+				}
+			);
 			const data = await response.json();
 			if (!response.ok) throw new Error(data.message || "Signup failed");
 

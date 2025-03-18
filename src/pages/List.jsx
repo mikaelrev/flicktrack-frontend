@@ -19,7 +19,7 @@ function List() {
 		const fetchList = async () => {
 			try {
 				const response = await axios.get(
-					`http://localhost:3000/lists/${listId}`
+					`https://flicktrack-backend.onrender.com/lists/${listId}`
 				);
 				setList(response.data.list);
 			} catch (error) {
@@ -39,7 +39,7 @@ function List() {
 		setIsLoading(true);
 		try {
 			await axios.delete(
-				`http://localhost:3000/users/lists/${listId}/movies/${movie._id}`,
+				`https://flicktrack-backend.onrender.com/users/lists/${listId}/movies/${movie._id}`,
 				config
 			);
 

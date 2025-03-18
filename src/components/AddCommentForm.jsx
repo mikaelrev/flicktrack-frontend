@@ -16,7 +16,7 @@ function AddCommentForm({ movieId, onCommentAdded }) {
 
 		try {
 			await axios.post(
-				`http://localhost:3000/comments/${movieId}`,
+				`https://flicktrack-backend.onrender.com/comments/${movieId}`,
 				{ content: comment },
 				{
 					headers: {
