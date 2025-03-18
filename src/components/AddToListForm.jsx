@@ -106,8 +106,6 @@ function AddToListForm({
 						radius="rounded"
 						isLoading={isLoading}
 						hover={`hover:bg-gray-800`}
-						py={2}
-						px={3}
 					>
 						{isLoading ? "Adding..." : "Add"}
 					</Button>
