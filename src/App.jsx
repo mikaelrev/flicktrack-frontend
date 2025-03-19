@@ -27,7 +27,7 @@ function App() {
 		<div className="flex flex-col min-h-screen justify-between bg-linear-to-b from-stone-950 to-blue-950">
 			<BrowserRouter>
 				<Navbar />
-				<div className="md:container md:mx-auto mt-5 p-5">
+				<div className="container mx-auto mt-5 p-5">
 					<Routes>
 						<Route path="/" element={<Homepage movies={movies} />} />
 						<Route path="/members" element={<Members />} />
